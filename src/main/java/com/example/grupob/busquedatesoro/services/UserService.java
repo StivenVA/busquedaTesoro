@@ -12,9 +12,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService implements UserInterface {
 
-        private final UserRepository userRepository;
+        /*private final UserRepository userRepository;
 
         public User findUser(String id){
                 return userRepository.findById(id).orElse(null);
-        }
+        }*/
 }

@@ -16,7 +16,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping(value = "/{id}")
+ /*   @GetMapping(value = "/{id}")
     public ResponseEntity<User> getUsuarioById(@PathVariable String id){
 
         User user = userService.findUser(id);
@@ -24,5 +24,5 @@ public class UserController {
        if (user == null) return ResponseEntity.notFound().build();
 
        return ResponseEntity.ok(user);
-    }
+    }*/
 }
