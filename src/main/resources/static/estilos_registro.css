@@ -89,3 +89,17 @@ body{
 .rigth-form a :hover{
     text-decoration: underline;
 }
+@media (max-width: 1200px) {
+    .left-form {
+        display: none;
+    }
+
+    .rigth-form{
+        width: 100%;
+    }
+    .rigth-form form{
+        height: 90%;
+        margin-top: 5%;
+        margin-bottom: 10%;
+    }
+}
