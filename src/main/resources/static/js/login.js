@@ -20,15 +20,14 @@ document.getElementById("send").addEventListener("click",async (e)=>{
         body:JSON.stringify(user)
     });
 
-    if (request.status!==404){
-        let response = await request.json();
-
-        alert("usuario: "+ JSON.stringify(response));
-    }
-    else{
-        alert("usuario o contraseña incorectos");
+    if (request.status===404){
+        alert("usuario o contraseña incorrectos");
+        return;
     }
 
-    email.value = "";
-    password.value = "";
+    let response = await request.json();
+
+    window.location = "mapa.html";
+
+
 })

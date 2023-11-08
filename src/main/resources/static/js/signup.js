@@ -3,15 +3,19 @@ document.getElementById("send").addEventListener("click",async (e)=>{
 
     const email = document.getElementById("email");
     const password = document.getElementById("password");
-    const passwordConfirmation = document.getElementById("password_2");
-    let id = "1006858866";
+    const passwordConfirmation = document.getElementById("passwordConfirm");
+    const id = document.getElementById("id");
+    const name = document.getElementById("name");
+    const phone = document.getElementById("telephone");
 
     let user = {};
 
     if (passwordConfirmation.value===password.value){
         user.email = email.value;
         user.password = password.value;
-        user.id = id;
+        user.id = id.value;
+        user.phone = phone.value;
+        user.name = name.value;
     }
 
     let request = await fetch("signup",{
@@ -26,4 +30,7 @@ document.getElementById("send").addEventListener("click",async (e)=>{
     email.value = "";
     password.value = "";
     passwordConfirmation.value = "";
+    name.value = "";
+    id.value="";
+    phone.value="";
 })
