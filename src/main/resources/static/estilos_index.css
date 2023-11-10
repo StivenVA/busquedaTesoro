@@ -88,6 +88,13 @@ body{
 .rigth-form a :hover{
     text-decoration: underline;
 }
+@media (max-width: 1500px) {
+    .rigth-form form{
+        height: 60%;
+        margin-top: 30%;
+        margin-bottom: 10%;
+    }
+}
 
 @media (max-width: 950px) {
     .left-form {
@@ -101,5 +108,20 @@ body{
         margin-top: 10%;
         margin-bottom: 10%;
         height: 75%;
+    }
+}
+@media (max-width: 600px) {
+    .left-form {
+        display: none;
+    }
+
+    .rigth-form{
+        width: 100%;
+    }
+    .rigth-form form{
+        margin-top: 10%;
+        margin-bottom: 5%;
+        height: 80%;
+        width: 90%;
     }
 }
