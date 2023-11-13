@@ -9,4 +9,6 @@ public interface UserInterface {
     Optional<User> validationUser(User user);
 
     boolean addUser(User user);
+
+    void updateLocation(int locationId,User userId);
 }

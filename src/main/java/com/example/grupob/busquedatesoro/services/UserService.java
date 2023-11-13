@@ -1,7 +1,9 @@
 package com.example.grupob.busquedatesoro.services;
 
 import com.example.grupob.busquedatesoro.interfaces.UserInterface;
+import com.example.grupob.busquedatesoro.models.Location;
 import com.example.grupob.busquedatesoro.models.User;
+import com.example.grupob.busquedatesoro.repositories.LocationRepository;
 import com.example.grupob.busquedatesoro.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.Optional;
 public class UserService implements UserInterface {
 
         private final UserRepository userRepository;
+        private final LocationRepository locationRepository;
 
         @Override
         public Optional<User> validationUser(User user){
@@ -42,6 +45,15 @@ public class UserService implements UserInterface {
                 }
 
             return added;
+        }
+
+        @Override
+        public void updateLocation(int locationId,User userId) {
+                Location location = locationRepository.findById(locationId).orElse(null);
+
+                if (location == null) throw new NullPointerException("Introdujo un id de locacion invalido");
+
+            userRepository.findById(userId.getId()).ifPresent(user -> user.setLocationId(location));
         }
 
 }
