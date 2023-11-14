@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="estilos_mapa.css">
-
   <title>Mapa</title>
-</head>
+  </head>
 <body class="body">
 <div class="grid-template-column-3-4">
-  <div>
-    <div id="map"></div>
-  </div>
-  <div class="bg-gray d-flex justify-content-center mt-1">
-    <input type="text" id="place-input" class="input" />
+  <div id="map"></div>
+  <div class="search-buttons-container">
+    <!--
+    <div class="bg-gray d-flex justify-content-center mt-1">
+      <input type="text" id="place-input" class="input" />
+    </div>
+    -->
+    <div id="buttons-container" class="d-flex justify-content-center mt-1">
+    </div>
   </div>
 </div>
 <script src="mapa.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjpZDeur855asN_FwestHE4SLjaqDpIPQ&libraries=places&callback=iniciarMap" >
-</script>
-</body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjpZDeur855asN_FwestHE4SLjaqDpIPQ&libraries=places&callback=iniciarMap"></script>
+  </body>
 </html>
