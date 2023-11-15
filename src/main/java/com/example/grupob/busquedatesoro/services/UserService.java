@@ -1,16 +1,18 @@
 package com.example.grupob.busquedatesoro.services;
 
 import com.example.grupob.busquedatesoro.interfaces.UserInterface;
+import com.example.grupob.busquedatesoro.models.Clue;
 import com.example.grupob.busquedatesoro.models.Location;
 import com.example.grupob.busquedatesoro.models.User;
+import com.example.grupob.busquedatesoro.repositories.ClueRepository;
 import com.example.grupob.busquedatesoro.repositories.LocationRepository;
 import com.example.grupob.busquedatesoro.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 @RequiredArgsConstructor
@@ -18,42 +20,37 @@ public class UserService implements UserInterface {
 
         private final UserRepository userRepository;
         private final LocationRepository locationRepository;
+        private final ClueRepository clueRepository;
 
-        @Override
-        public Optional<User> validationUser(User user){
+        public Clue getClue(String codeClue,String id){
+                Clue foundedClue = clueRepository.findById(codeClue).orElse(null);
+                User foundedUser = userRepository.findById(id).orElse(null);
 
-                User userBd = userRepository.findByEmail(user.getEmail());
+                updateLocation(foundedClue,foundedUser);
 
-                try {
-                        if (BCrypt.checkpw(user.getPassword(),userBd.getPassword())) return Optional.of(userBd);
-
-                } catch (NullPointerException e){
-                        return Optional.empty();
-                }
-                return Optional.empty();
+                return foundedClue;
         }
 
         @Override
-        public boolean addUser(User user){
+        public void updateLocation(Clue foundedClue,User user) {
+                if (foundedClue==null) throw new NullPointerException("Codigo incorrecto");
+                if (user==null) throw new NullPointerException("Usuario invalido");
 
-                boolean added = userRepository.findByEmailOrId(user.getEmail(), user.getId()) == null;
+                Location clueLocation = locationRepository.findByClueId(foundedClue);
 
-                if (added){
-                        String hashedPassword = BCrypt.hashpw(user.getPassword().trim(),BCrypt.gensalt());
-                        user.setPassword(hashedPassword);
-                        userRepository.save(user);
+                if (clueLocation.getLocationId() == nextLocationId(user.getId())) {
+                        userRepository.updateLocation(clueLocation, user.getId());
                 }
 
-            return added;
         }
 
-        @Override
-        public void updateLocation(int locationId,User userId) {
-                Location location = locationRepository.findById(locationId).orElse(null);
+        private int nextLocationId(String userId){
+                AtomicReference<Location> currentLocation = new AtomicReference<>();
+                userRepository.findById(userId).ifPresent(user -> currentLocation.set(user.getLocationId()));
 
-                if (location == null) throw new NullPointerException("Introdujo un id de locacion invalido");
+                int nextLocation = currentLocation.get().getLocationId()+1;
 
-            userRepository.findById(userId.getId()).ifPresent(user -> user.setLocationId(location));
+                return nextLocation;
         }
 
 }
