@@ -23,7 +23,7 @@ public class UserController {
         try {
           gottenClue = userService.getClue(code,userId);
         }
-        catch (NullPointerException e){
+        catch (NullPointerException | IllegalArgumentException e){
                 return ResponseEntity.badRequest().body(e.getMessage());
         }
 

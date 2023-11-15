@@ -41,6 +41,7 @@ public class UserService implements UserInterface {
                 if (clueLocation.getLocationId() == nextLocationId(user.getId())) {
                         userRepository.updateLocation(clueLocation, user.getId());
                 }
+                else throw new IllegalArgumentException("El codigo no corresponde al de la siguiente locacion");
 
         }
 
@@ -48,7 +49,11 @@ public class UserService implements UserInterface {
                 AtomicReference<Location> currentLocation = new AtomicReference<>();
                 userRepository.findById(userId).ifPresent(user -> currentLocation.set(user.getLocationId()));
 
-                int nextLocation = currentLocation.get().getLocationId()+1;
+                int nextLocation;
+
+                if (currentLocation.get().getLocationId()==10) nextLocation = 10;
+
+                else nextLocation = currentLocation.get().getLocationId()+1;
 
                 return nextLocation;
         }

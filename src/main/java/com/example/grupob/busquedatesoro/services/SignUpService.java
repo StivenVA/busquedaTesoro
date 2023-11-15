@@ -19,6 +19,7 @@ public class SignUpService {
         if (added){
             String hashedPassword = BCrypt.hashpw(user.getPassword().trim(),BCrypt.gensalt());
             user.setPassword(hashedPassword);
+            user.setLocationId(null);
             userRepository.save(user);
         }
 
