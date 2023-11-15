@@ -76,7 +76,6 @@ body {
     line-height: 40px;
 }
 
-/* Ajustes para la apariencia del texto en los botones */
 #buttons-container .btn:before {
     content: attr(data-nombre); /* Muestra el atributo nombre en el botón */
 }

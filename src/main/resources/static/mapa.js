@@ -118,7 +118,7 @@ function iniciarMap() {
             document.getElementById("buttons-container").appendChild(button);
         });
     };
-
+//push
 
     const getYourApproximateLocation = () => {
         if (navigator.geolocation) {
