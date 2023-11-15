@@ -9,7 +9,7 @@ let properties = [
             lat: 4.144492649268406,
             lng: -73.64366876354258
         },
-        enlace:"src/main/resources/static/preguntas_1.html",
+        enlace:"preguntas_1.html",
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ let properties = [
             lat: 4.147087005973939,
             lng: -73.61355813661032,
         },
-        enlace:"src/main/resources/static/preguntas_1.html",
+        enlace:"preguntas_1.html",
     },
     {
         id: 3,
@@ -31,7 +31,7 @@ let properties = [
             lat: 4.032274864687695,
             lng: -73.79460346617878,
         },
-        enlace:"src/main/resources/static/preguntas_1.html",
+        enlace:"preguntas_1.html",
     },
     {
 
@@ -44,7 +44,7 @@ let properties = [
             lat: 4.1425037520165535,
             lng: -73.62079482668284,
         },
-        enlace:"src/main/resources/static/preguntas_1.html",
+        enlace:"preguntas_1.html",
     },
     {
 
@@ -57,7 +57,7 @@ let properties = [
             lat: 4.141439021049356,
             lng: -73.62524192925281,
         },
-        enlace:"src/main/resources/static/preguntas_1.html",
+        enlace:"preguntas_1.html",
     },
 
 ];
