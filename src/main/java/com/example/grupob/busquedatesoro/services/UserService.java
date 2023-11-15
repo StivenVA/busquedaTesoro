@@ -38,22 +38,26 @@ public class UserService implements UserInterface {
 
                 Location clueLocation = locationRepository.findByClueId(foundedClue);
 
-                if (clueLocation.getLocationId() == nextLocationId(user.getId())) {
+                System.out.println(clueLocation);
+
+                if (clueLocation.getLocationId() == nextLocationIdFromUser(user)) {
                         userRepository.updateLocation(clueLocation, user.getId());
                 }
                 else throw new IllegalArgumentException("El codigo no corresponde al de la siguiente locacion");
 
         }
 
-        private int nextLocationId(String userId){
-                AtomicReference<Location> currentLocation = new AtomicReference<>();
-                userRepository.findById(userId).ifPresent(user -> currentLocation.set(user.getLocationId()));
+        private int nextLocationIdFromUser(User user){
+                Location currentLocation;
+                currentLocation = user.getLocationId();
 
                 int nextLocation;
 
-                if (currentLocation.get().getLocationId()==10) nextLocation = 10;
+                if (currentLocation==null) nextLocation = 1;
 
-                else nextLocation = currentLocation.get().getLocationId()+1;
+                else if (currentLocation.getLocationId()==10) nextLocation = 10;
+
+                else nextLocation = currentLocation.getLocationId()+1;
 
                 return nextLocation;
         }
