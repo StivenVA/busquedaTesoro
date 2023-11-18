@@ -40,6 +40,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-end;
 }
 
 /* Estilos para los botones */
@@ -80,5 +81,27 @@ body {
     content: attr(data-nombre); /* Muestra el atributo nombre en el botón */
 }
 
-/* Agrega más estilos según sea necesario */
+/* Ajustes para el botón de ubicación actual */
+#go-to-location-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 250px;
+    height: 40px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    background-color: #ffcccc; /* Tono rojo claro */
+    color: #333; /* Texto oscuro */
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Estilo al pasar el mouse sobre el botón de ubicación actual */
+#go-to-location-btn:hover {
+    background-color: #ff9999; /
+}
 

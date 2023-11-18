@@ -41,6 +41,33 @@ body {
     background-color: #f39c12;
     color: #fff;
 }
+
+#next-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#next-button {
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#next-button:hover {
+    background-color: #2980b9;
+}
+
+#next-button.selected {
+    background-color: #f39c12;
+    color: #fff;
+}
 #question-image {
     max-width: 100%; /* La imagen no superará el ancho del contenedor */
     height: auto;    /* La altura se ajustará automáticamente para mantener la proporción original */

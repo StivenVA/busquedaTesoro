@@ -1,35 +1,36 @@
 const questions = [
+//agregar pregunta llorona
     {
-        question: '¿Que mito representa la imagen mostrada?',
-        image: './img/bolaf.png',
+        question: '¿Cómo se describe físicamente al Mohán en la mitología de los Llanos Orientales?',
+        image: '../img/mohan.png',
         answers: [
-            { text: 'Madre Monte', correct: false },
-            { text: 'Bola de Fuego', correct: true },
-            { text: 'Sombreron', correct: false },
-            { text: 'Patasola', correct: false }
+            { text: 'Un hombre atractivo con larga cabellera', correct: true },
+            { text: 'Un hombre alto y delgado', correct: false },
+            { text: 'Un ser peludo con cuernos', correct: false },
+            { text: 'Un anciano de aspecto sabio', correct: false }
         ]
     },
     {
-        question: '¿Que mito representa la imagen mostrada?',
-        image: './img/llorona.png',
+        //2
+        question: '¿Qué se dice que anuncia la presencia del Silbón según la leyenda?',
+        image: '../img/silbon.png',
         answers: [
-            { text: 'Llorona', correct: true },
-            { text: 'Mano Peluda', correct: false },
-            { text: 'Hombre Caiman', correct: false },
-            { text: 'Muelona', correct: false }
+            { text: 'Un lamento lastimero', correct: false },
+            { text: 'Un silbido agudo', correct: true },
+            { text: 'El aullido de un lobo', correct: false },
+            { text: 'El sonido de campanas lejanas', correct: false }
         ]
     },
     {
-        question: '¿Que mito representa la imagen mostrada?',
-        image: './img/silbon.png',
+        question: '¿Cuál es la supuesta razón por la cual la Llorona llora en la leyenda?',
+        image: '../img/llorona.png',
         answers: [
-            { text: 'El Salvaje', correct: false },
-            { text: 'Juan Machete', correct: false },
-            { text: 'Silbon', correct: true },
-            { text: 'Duende', correct: false }
+            { text: 'Por la pérdida de su fortuna', correct: false },
+            { text: 'Por la muerte de sus hijos', correct: true },
+            { text: 'Por haber sido abandonada', correct: false },
+            { text: 'Por la pérdida de su esposo', correct: false }
         ]
     },
-    // Agrega más preguntas según sea necesario
 ];
 
 let currentQuestionIndex = 0;
@@ -44,7 +45,10 @@ function startGame() {
     correctAnswers = 0;
     showQuestion(questions[currentQuestionIndex]);
 }
-
+function goBack() {
+    // Cambia la URL según tu estructura de carpetas y archivos
+    window.location.href = '../html/mapa.html';
+}
 function showQuestion(question) {
     questionText.innerText = question.question;
     const imageElement = document.getElementById('question-image');
@@ -78,25 +82,23 @@ function selectAnswer(answer, button) {
     nextButton.style.display = 'block';
 }
 
-
-
 function nextQuestion() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestion(questions[currentQuestionIndex]);
-        nextButton.style.display = 'none';
+        nextButton.style.display = 'block';
     } else {
-
         showResultMessage();
     }
 }
 
 function showResultMessage() {
+    nextButton.style.display = 'none';
     let resultMessage;
     if (correctAnswers === questions.length) {
-        resultMessage = '¡Aprobado!';
+        resultMessage = `¡Aprobado! Puntaje final: ${correctAnswers}/${questions.length}`;
     } else {
-        resultMessage = 'Reprobado';
+        resultMessage = `Reprobado. Puntaje final: ${correctAnswers}/${questions.length}`;
     }
 
     Swal.fire({
@@ -109,15 +111,13 @@ function showResultMessage() {
     }).then((result) => {
         if (result.isConfirmed) {
             // El botón "Cerrar" fue clicado
-            // Puedes agregar lógica adicional aquí si es necesario
+            window.location.href = '../html/mapa.html';
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             // El botón "Reintentar" fue clicado
-            startGame(); // Reinicia el juego
+            startGame();
         }
     });
 }
-
-
 
 // Inicia el juego al cargar la página
 startGame();

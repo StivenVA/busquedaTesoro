@@ -2,62 +2,62 @@ let map;
 let autocomplete;
 let properties = [
     { id: 1,
-        nombre: "test_1",
+        nombre: "Estacion 1",
         estacion: 1,
         prueba: "algo",
         coords: {
             lat: 4.144492649268406,
-            lng: -73.64366876354258
+            lng: -73.64366876354258,
         },
         enlace:"preguntas_1.html",
     },
     {
         id: 2,
-        nombre: "test_2",
+        nombre: "Estacion 2",
         estacion: 2,
         prueba: "algomas",
         coords: {
             lat: 4.147087005973939,
             lng: -73.61355813661032,
         },
-        enlace:"preguntas_1.html",
+        enlace:"preguntas_2.html",
     },
     {
         id: 3,
-        nombre: "test_3_lejos",
+        nombre: "Estacion 3",
         estacion: 3,
         prueba: "boton_malo",
         coords: {
             lat: 4.032274864687695,
             lng: -73.79460346617878,
         },
-        enlace:"preguntas_1.html",
+        enlace:"preguntas_3.html",
     },
     {
 
 
         id: 4,
-        nombre: "danesa_cerca",
+        nombre: "Estacion 4",
         estacion: "Danesa",
         prueba: "boton_deberia_servir",
         coords: {
             lat: 4.1425037520165535,
             lng: -73.62079482668284,
         },
-        enlace:"preguntas_1.html",
+        enlace:"preguntas_4.html",
     },
     {
 
 
         id: 5,
-        nombre: "papel_cerca",
+        nombre: "Estacion 5",
         estacion: "cerca_papeleria",
         prueba: "boton_deberia_servir2",
         coords: {
             lat: 4.141439021049356,
             lng: -73.62524192925281,
         },
-        enlace:"preguntas_1.html",
+        enlace:"preguntas_5.html",
     },
 
 ];
@@ -69,6 +69,14 @@ function iniciarMap() {
 
     firstPositionMap()
     let infoWindow = new google.maps.InfoWindow();
+
+
+    const locationButton = document.createElement("button");
+    locationButton.id = "go-to-location-btn";
+    locationButton.classList.add("btn");
+    locationButton.innerText = "Mi ubicación";
+    locationButton.addEventListener("click", goToUserLocation);
+    document.getElementById("my-location-container").appendChild(locationButton);
     //    let buttonsCreated = false;
     const addMarker = (properties) => {
         properties.forEach((propertie) => {
@@ -76,15 +84,15 @@ function iniciarMap() {
             const marker = new google.maps.Marker({
                 position: propertie.coords,
                 map,
-                icon: "./icons/marker.svg",
+                icon: "../icons/marker.svg",
             });
 
             const buttonId = `button${propertie.id}`;
             const button = document.createElement("button");
             button.id = buttonId;
             button.classList.add("btn");
-            button.textContent = propertie.nombre; // Utiliza el nombre como contenido del botón
             button.disabled = true; // Por defecto, los botones están deshabilitados
+
 
             if (propertie.enlace) {
                 button.setAttribute("target", "_blank");
@@ -111,7 +119,7 @@ function iniciarMap() {
                 infoWindow.setContent(informationCard);
                 infoWindow.open(map, marker);
                 map.setCenter(propertie.coords);
-                map.setZoom(14);
+                map.setZoom(19);
             });
 
             // Agrega el botón al contenedor de botones
@@ -126,11 +134,11 @@ function iniciarMap() {
                 ({ coords: { latitude, longitude } }) => {
                     userLocation = { lat: latitude, lng: longitude };
                     map.setCenter(userLocation);
-                    map.setZoom(13);
+                    map.setZoom(19);
                     new google.maps.Marker({
                         position: userLocation,
                         map: map,
-                        icon: "./icons/marker.svg",
+                        icon: "../icons/user.svg",
                     });
                 },
                 () => {
@@ -150,7 +158,16 @@ function iniciarMap() {
     setInterval(() => {
         checkDistances();
     }, 1000);
-};
+}
+
+function goToUserLocation() {
+    if (userLocation) {
+        map.setCenter(userLocation);
+        map.setZoom(19);
+    } else {
+        alert("No se pudo obtener la ubicación actual.");
+    }
+}
 
 const checkDistances = () => {
     if (userLocation) {
@@ -161,8 +178,6 @@ const checkDistances = () => {
                 propertie.coords.lat,
                 propertie.coords.lng
             );
-            console.log(`Distance to Station ${propertie.id}: ${distance} km`);
-
             const buttonId = `button${propertie.id}`;
             const button = document.getElementById(buttonId);
 
@@ -170,6 +185,15 @@ const checkDistances = () => {
                 button.disabled = distance > maxDistance;
             }
         });
+        // Crear el botón "Mi ubicación"
+        const locationButton = document.createElement("button");
+        locationButton.id = "go-to-location-btn";
+        locationButton.classList.add("btn");
+        locationButton.innerText = "Mi ubicación";
+        locationButton.addEventListener("click", goToUserLocation);
+
+// Agregar el botón al contenedor específico
+        document.getElementById("my-location-container").appendChild(locationButton);
     }
 };
 
