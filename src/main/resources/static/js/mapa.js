@@ -1,13 +1,13 @@
 let map;
-let autocomplete;
 let properties = [
-    { id: 1,
+    {
+        id: 1,
         nombre: "Estacion 1",
         estacion: 1,
         prueba: "algo",
         coords: {
-            lat: 4.144492649268406,
-            lng: -73.64366876354258,
+            lat: 4.142977722191746,
+            lng: -73.6262676723069,
         },
         enlace:"preguntas_1.html",
     },
@@ -34,8 +34,6 @@ let properties = [
         enlace:"preguntas_3.html",
     },
     {
-
-
         id: 4,
         nombre: "Estacion 4",
         estacion: "Danesa",
@@ -47,8 +45,6 @@ let properties = [
         enlace:"preguntas_4.html",
     },
     {
-
-
         id: 5,
         nombre: "Estacion 5",
         estacion: "cerca_papeleria",
@@ -61,7 +57,15 @@ let properties = [
     },
 
 ];
-
+const stationCodes = {
+    1: "cod1",
+    2: "cod2",
+    3: "cod3",
+    4: "cod4",
+    5: "cod5",
+};
+const allButtons = [];
+let lastEnteredCode = null;
 const maxDistance = 0.8;
 let userLocation = null;
 
@@ -91,22 +95,31 @@ function iniciarMap() {
             const button = document.createElement("button");
             button.id = buttonId;
             button.classList.add("btn");
-            button.disabled = true; // Por defecto, los botones están deshabilitados
 
+            // Hace que el botón de la estación 1 esté habilitado y visible por defecto
+            if (propertie.id === 1) {
+                button.disabled = false;
+                button.style.display = "block";
+                allButtons.push(button);
+            } else {
+                button.disabled = true; // Por defecto, los botones están deshabilitados
+                button.style.display = "none"; // Por defecto, los botones están ocultos
+            }
 
             if (propertie.enlace) {
-                button.setAttribute("target", "_blank");
-                // Asigna el enlace al botón
+                button.setAttribute("target", "_blank");  // Asigna el enlace al botón
                 button.addEventListener("click", () => {
-                    window.open(propertie.enlace, "_blank");
+                    const enteredCode = prompt("Ingresa el código:");
+                    if (enteredCode) {
+                        checkEnteredCode(propertie.id, enteredCode);
+                    }
                 });
             } else {
-                // Si no hay enlace, agrega el evento click estándar
                 button.addEventListener("click", () => {
-                    const stationId = button.dataset.id;
-                    const stationName = button.dataset.nombre;
-                    const stationNumber = button.dataset.estacion;
-                    alert(`Botón ${stationNumber}: ${stationName} (ID: ${stationId})`);
+                    const enteredCode = prompt("Ingresa el código:");
+                    if (enteredCode) {
+                        checkEnteredCode(propertie.id, enteredCode);
+                    }
                 });
             }
 
@@ -126,7 +139,18 @@ function iniciarMap() {
             document.getElementById("buttons-container").appendChild(button);
         });
     };
-//push
+//fin addMarker()
+    const checkEnteredCode = (stationId, enteredCode) => {
+        const correctCode = stationCodes[stationId];
+        if (enteredCode === correctCode) {
+            alert("Código correcto. Redirigiendo a la página de preguntas...");
+            const stationUrl = `preguntas_${stationId}.html`;
+            window.location.href = stationUrl; // Redirige la ventana actual a la nueva URL
+        } else {
+            alert("Código incorrecto. Inténtalo de nuevo.");
+        }
+    };
+
 
     const getYourApproximateLocation = () => {
         if (navigator.geolocation) {
@@ -140,6 +164,9 @@ function iniciarMap() {
                         map: map,
                         icon: "../icons/user.svg",
                     });
+
+                    // Después de obtener la ubicación del usuario, verifica las distancias
+                    checkDistances();
                 },
                 () => {
                     alert(
@@ -151,6 +178,7 @@ function iniciarMap() {
             alert("Tu navegador no cuenta con localización ");
         }
     };
+
 
     getYourApproximateLocation();
     addMarker(properties);
@@ -183,19 +211,36 @@ const checkDistances = () => {
 
             if (button) {
                 button.disabled = distance > maxDistance;
+                button.style.display = lastEnteredCode === null || stationCodes[propertie.id] === lastEnteredCode ? "block" : "none";
+
             }
         });
         // Crear el botón "Mi ubicación"
-        const locationButton = document.createElement("button");
+        const locationButton = document.getElementById("go-to-location-btn") || document.createElement("button");
+
         locationButton.id = "go-to-location-btn";
         locationButton.classList.add("btn");
         locationButton.innerText = "Mi ubicación";
         locationButton.addEventListener("click", goToUserLocation);
 
-// Agregar el botón al contenedor específico
+        // Agregar el botón al contenedor específico
         document.getElementById("my-location-container").appendChild(locationButton);
+        allButtons.push(locationButton);
     }
 };
+
+function ingresarCodigo(codigo) {
+    const isValidCode = Object.values(stationCodes).includes(codigo);
+    if (isValidCode) {
+        lastEnteredCode = codigo;
+        alert("Código ingresado correctamente.");
+        // Actualiza la visibilidad de los botones y marcadores
+        checkDistances();
+    } else {
+        alert("Código incorrecto. Inténtalo de nuevo.");
+    }
+}
+
 
 const firstPositionMap = () => {
     const coords = { lat: 19.406940428320986, lng: -99.14819687896599 };

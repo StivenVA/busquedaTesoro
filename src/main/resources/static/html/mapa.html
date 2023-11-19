@@ -7,17 +7,27 @@
   <link rel="stylesheet" href="../css/estilos_mapa.css">
   <title>Mapa</title>
   </head>
+  <header>
+    <div class="menu">
+      <ul>
+        <li><a href="#">Elemento 1</a></li>
+        <li><a href="#">Elemento 2</a></li>
+        <li><a href="#">Elemento 3</a></li>
+        <li><a href="#">Elemento 4</a></li>
+        <li><a href="#">Elemento 5</a></li>
+      </ul>
+    </div>
+  </header>
 <body class="body">
 <div class="grid-template-column-3-4">
   <div id="map"></div>
-  <div class="search-buttons-container">
-    <div id="buttons-container" class="d-flex justify-content-center mt-1"></div>
-    <div id="my-location-container" class="d-flex justify-content-center mt-1"></div>
-  </div>
-
-
+    <div class="search-buttons-container">
+      <div id="buttons-container" class="d-flex justify-content-center mt-1">
+        <h2>Estaciones Disponibles</h2>
+      </div>
+      <div id="my-location-container" class="d-flex justify-content-center mt-1"></div>
+    </div>
 </div>
-
 <script src="../js/mapa.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjpZDeur855asN_FwestHE4SLjaqDpIPQ&libraries=places&callback=iniciarMap"></script>
   </body>
