@@ -119,6 +119,6 @@ function showResultMessage() {
         }
     });
 }
-//ok, habria una manera de hacer que el script de cada ronda de preguntas
+
 // Inicia el juego al cargar la página
 startGame();

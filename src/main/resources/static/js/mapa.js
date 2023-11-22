@@ -177,6 +177,7 @@ function goToUserLocation() {
     }
 }
 
+
 let unlockedStations = [];
 const checkDistances = () => {
     if (userLocation) {

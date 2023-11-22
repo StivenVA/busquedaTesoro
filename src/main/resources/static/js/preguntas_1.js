@@ -118,6 +118,5 @@ function showResultMessage() {
         }
     });
 }
-
 // Inicia el juego al cargar la página
 startGame();
