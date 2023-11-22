@@ -34,6 +34,7 @@ const questions = [
 
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
+let allQuestionsCorrect = false;
 
 const questionText = document.getElementById('question-text');
 const answerButtons = document.getElementById('answer-buttons');
@@ -42,6 +43,7 @@ const nextButton = document.getElementById('next-button');
 function startGame() {
     currentQuestionIndex = 0;
     correctAnswers = 0;
+    allQuestionsCorrect = false;
     showQuestion(questions[currentQuestionIndex]);
 }
 function goBack() {
@@ -71,13 +73,9 @@ function selectAnswer(answer, button) {
         correctAnswers++;
     }
 
-    // Elimina la clase 'selected' de todos los botones
     const allButtons = document.querySelectorAll('.btn');
     allButtons.forEach(btn => btn.classList.remove('selected'));
-
-    // Agrega la clase 'selected' solo al botón actualmente seleccionado
     button.classList.add('selected');
-
     nextButton.style.display = 'block';
 }
 
@@ -87,19 +85,23 @@ function nextQuestion() {
         showQuestion(questions[currentQuestionIndex]);
         nextButton.style.display = 'block';
     } else {
-        showResultMessage();
+        checkAllQuestionsCorrect()
     }
 }
-
+function checkAllQuestionsCorrect() {
+    if (correctAnswers === questions.length) {
+        allQuestionsCorrect = true;
+    }
+    showResultMessage();
+}
 function showResultMessage() {
     nextButton.style.display = 'none';
     let resultMessage;
-    if (correctAnswers === questions.length) {
+    if (allQuestionsCorrect) {
         resultMessage = `¡Aprobado! Puntaje final: ${correctAnswers}/${questions.length}`;
     } else {
         resultMessage = `Reprobado. Puntaje final: ${correctAnswers}/${questions.length}`;
     }
-
     Swal.fire({
         title: 'Resultado',
         text: resultMessage,

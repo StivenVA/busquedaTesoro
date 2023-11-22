@@ -1,15 +1,16 @@
 let map;
-let autocomplete;
 let properties = [
-    { id: 1,
+    {
+        id: 1,
         nombre: "Estacion 1",
         estacion: 1,
         prueba: "algo",
         coords: {
-            lat: 4.144492649268406,
-            lng: -73.64366876354258,
+            lat: 4.142425534240816,
+            lng: -73.62653684081216,
         },
-        enlace:"preguntas_1.html",
+        enlace: "preguntas_1.html",
+        pin: 111,
     },
     {
         id: 2,
@@ -17,10 +18,11 @@ let properties = [
         estacion: 2,
         prueba: "algomas",
         coords: {
-            lat: 4.147087005973939,
-            lng: -73.61355813661032,
+            lat: 4.144227858494155,
+            lng: -73.62672876632556,
         },
-        enlace:"preguntas_2.html",
+        enlace: "preguntas_2.html",
+        pin: 222,
     },
     {
         id: 3,
@@ -28,14 +30,13 @@ let properties = [
         estacion: 3,
         prueba: "boton_malo",
         coords: {
-            lat: 4.032274864687695,
-            lng: -73.79460346617878,
+            lat: 4.141574059821997,
+            lng: -73.62760316643816,
         },
-        enlace:"preguntas_3.html",
+        enlace: "preguntas_3.html",
+        pin: 333,
     },
     {
-
-
         id: 4,
         nombre: "Estacion 4",
         estacion: "Danesa",
@@ -44,11 +45,10 @@ let properties = [
             lat: 4.1425037520165535,
             lng: -73.62079482668284,
         },
-        enlace:"preguntas_4.html",
+        enlace: "preguntas_4.html",
+        pin: 444,
     },
     {
-
-
         id: 5,
         nombre: "Estacion 5",
         estacion: "cerca_papeleria",
@@ -57,19 +57,17 @@ let properties = [
             lat: 4.141439021049356,
             lng: -73.62524192925281,
         },
-        enlace:"preguntas_5.html",
+        enlace: "preguntas_5.html",
+        pin: 555,
     },
-
 ];
 
 const maxDistance = 0.8;
 let userLocation = null;
 
 function iniciarMap() {
-
-    firstPositionMap()
+    firstPositionMap();
     let infoWindow = new google.maps.InfoWindow();
-
 
     const locationButton = document.createElement("button");
     locationButton.id = "go-to-location-btn";
@@ -77,7 +75,10 @@ function iniciarMap() {
     locationButton.innerText = "Mi ubicación";
     locationButton.addEventListener("click", goToUserLocation);
     document.getElementById("my-location-container").appendChild(locationButton);
-    //    let buttonsCreated = false;
+
+    const verifyPINButton = document.getElementById("verify-pin-button");
+    verifyPINButton.addEventListener("click", checkDistances);
+
     const addMarker = (properties) => {
         properties.forEach((propertie) => {
             const informationCard = createInfoWindow(propertie);
@@ -91,17 +92,29 @@ function iniciarMap() {
             const button = document.createElement("button");
             button.id = buttonId;
             button.classList.add("btn");
-            button.disabled = true; // Por defecto, los botones están deshabilitados
-
+            button.disabled = true;
 
             if (propertie.enlace) {
                 button.setAttribute("target", "_blank");
-                // Asigna el enlace al botón
                 button.addEventListener("click", () => {
-                    window.open(propertie.enlace, "_blank");
+                    const stationId = button.dataset.id;
+                    const stationName = button.dataset.nombre;
+                    const stationNumber = button.dataset.estacion;
+
+                    const enteredPIN = document.getElementById("pin-input").value;
+                    const isPINCorrect = checkPIN(stationId, enteredPIN);
+
+                    if (isPINCorrect) {
+                        const destinationURL = propertie.enlace;
+                        const confirmation = window.confirm("Acceso permitido. ¿Desea continuar?");
+                        if (confirmation) {
+                            window.location.href = destinationURL;
+                        } else {
+                            window.location.href = '../html/mapa.html';
+                        }
+                    }
                 });
             } else {
-                // Si no hay enlace, agrega el evento click estándar
                 button.addEventListener("click", () => {
                     const stationId = button.dataset.id;
                     const stationName = button.dataset.nombre;
@@ -110,7 +123,6 @@ function iniciarMap() {
                 });
             }
 
-            // Almacena la información de la estación en el botón utilizando data-*
             button.dataset.id = propertie.id;
             button.dataset.nombre = propertie.nombre;
             button.dataset.estacion = propertie.estacion;
@@ -122,11 +134,9 @@ function iniciarMap() {
                 map.setZoom(19);
             });
 
-            // Agrega el botón al contenedor de botones
             document.getElementById("buttons-container").appendChild(button);
         });
     };
-//push
 
     const getYourApproximateLocation = () => {
         if (navigator.geolocation) {
@@ -142,9 +152,7 @@ function iniciarMap() {
                     });
                 },
                 () => {
-                    alert(
-                        "Tu navegador está bien, pero ocurrió un error al obtener tu ubicación"
-                    );
+                    alert("Tu navegador está bien, pero ocurrió un error al obtener tu ubicación");
                 }
             );
         } else {
@@ -169,6 +177,7 @@ function goToUserLocation() {
     }
 }
 
+let unlockedStations = [];
 const checkDistances = () => {
     if (userLocation) {
         properties.forEach((propertie) => {
@@ -182,19 +191,53 @@ const checkDistances = () => {
             const button = document.getElementById(buttonId);
 
             if (button) {
-                button.disabled = distance > maxDistance;
+                const stationId = parseInt(button.dataset.id);
+                const enteredPIN = document.getElementById("pin-input").value;
+                const isPINCorrect = checkPIN(stationId, enteredPIN);
+                const isUnlocked = isStationUnlocked(stationId);
+
+                button.disabled = distance > maxDistance || !isPINCorrect || isUnlocked;
+
+                if (!button.disabled) {
+                    button.addEventListener("click", () => {
+                        unlockStation(stationId, enteredPIN);
+                    });
+                }
             }
         });
-        // Crear el botón "Mi ubicación"
+
         const locationButton = document.createElement("button");
         locationButton.id = "go-to-location-btn";
         locationButton.classList.add("btn");
         locationButton.innerText = "Mi ubicación";
         locationButton.addEventListener("click", goToUserLocation);
 
-// Agregar el botón al contenedor específico
         document.getElementById("my-location-container").appendChild(locationButton);
     }
+};
+
+const unlockStation = (stationId, enteredPIN) => {
+    const isPINCorrect = checkPIN(stationId, enteredPIN);
+
+    if (isPINCorrect) {
+        unlockedStations.push(stationId);
+        alert("¡unloc station 219 .");
+
+        // Redirige a la prueba correspondiente en la misma ventana
+        const destinationURL = properties.find((property) => property.id === stationId)?.enlace;
+        if (destinationURL) {
+            const confirmation = window.confirm("¿Dsegunda de unlock 219?");
+            if (confirmation) {
+                window.location.href = destinationURL;
+            }
+        }
+    } else {
+        alert("PIN incorrecto. Inténtelo de nuevo.");
+    }
+};
+
+const isStationUnlocked = (stationId) => {
+    return unlockedStations.includes(stationId);
 };
 
 const firstPositionMap = () => {
@@ -206,18 +249,17 @@ const firstPositionMap = () => {
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radio de la Tierra en kilómetros
+    const R = 6371;
     const dLat = deg2rad(lat2 - lat1);
     const dLon = deg2rad(lon2 - lon1);
     const a =
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
         Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c; // Distancia en kilómetros
+    const distance = R * c;
     return distance;
 }
 
-// Función para convertir grados a radianes
 function deg2rad(deg) {
     return deg * (Math.PI / 180);
 }
@@ -232,4 +274,9 @@ const createInfoWindow = (propertie) => {
     <p><b>Prueba: </b>${propertie.prueba}</p>
   </div>
   `;
+};
+
+const checkPIN = (stationId, enteredPIN) => {
+    const correctPIN = properties.find((property) => property.id === stationId)?.pin;
+    return correctPIN && enteredPIN === correctPIN.toString();
 };
