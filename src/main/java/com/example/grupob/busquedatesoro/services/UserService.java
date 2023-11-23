@@ -11,9 +11,6 @@ import com.example.grupob.busquedatesoro.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
-
 @Service
 @RequiredArgsConstructor
 public class UserService implements UserInterface {
@@ -34,7 +31,7 @@ public class UserService implements UserInterface {
         @Override
         public void updateLocation(Clue foundedClue,User user) {
                 if (foundedClue==null) throw new NullPointerException("Codigo incorrecto");
-                if (user==null) throw new NullPointerException("Usuario invalido");
+                if (user==null) throw new NullPointerException("Usuario no encontrado");
 
                 Location clueLocation = locationRepository.findByClueId(foundedClue);
 
@@ -43,6 +40,16 @@ public class UserService implements UserInterface {
                 }
                 else throw new IllegalArgumentException("El codigo no corresponde al de la siguiente locacion");
 
+        }
+
+        @Override
+        public Location getLocation(String userId) {
+
+                if (userId.isBlank()) throw new IllegalArgumentException("El id del usuario no puede estar vacio");
+
+                if (userRepository.findById(userId).isEmpty()) throw new NullPointerException("El usuario no existe");
+
+                return userRepository.getUserLocation(userId);
         }
 
         private int nextLocationIdFromUser(User user){

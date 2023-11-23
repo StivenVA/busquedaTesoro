@@ -15,7 +15,7 @@ body{
     height: 100%;
     overflow: hidden;
     float: left;
-    background: #fff url('img/index_bg.jpg')center;
+    background: #fff url('../img/index_bg.jpg')center;
     background-size: cover;
 }
 
