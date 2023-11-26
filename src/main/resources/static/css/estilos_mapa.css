@@ -39,32 +39,20 @@ header {
 
 
 #map {
-    height:100%;
+    height:80vh;
     width: 100%;
-    margin: 0;
+
 }
 
 .grid-template-column-3-4 {
     display: grid;
-    grid-template-columns: 5fr 1fr;
+    grid-template-columns: 6.5fr 1fr;
     height: 100vh;
     overflow: hidden;
 }
 
-.bg-gray {
-    background-color: aliceblue;
-}
-
-.d-flex {
-    display: flex;
-}
-
 .justify-content-center {
     justify-content: center;
-}
-
-.mt-1 {
-    margin-top: 1rem;
 }
 
 /* Estilos para el título del menú de botones */
@@ -79,15 +67,35 @@ header {
 .search-buttons-container {
     display: flex;
     flex-direction: column;
-    height: 50vh;
+    height: 100%;
+    background-color: lightgrey;
 }
 
-/* Estilos para el contenedor de botones */
 #buttons-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    height: 40%;
+}
+
+/* Ajusta el margen inferior del botón de ubicación */
+#go-to-location-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    height: 45px;
+    margin: 10px 0 0; /* Ajusta el margen, he cambiado el margen inferior a 0 */
+    border: none;
+    border-radius: 10px;
+    background-color: #ffcccc; /* Tono rojo claro */
+    color: #333; /* Texto oscuro */
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Estilos para los botones */
@@ -129,48 +137,37 @@ header {
 }
 
 /* Ajustes para el botón de ubicación actual */
-#go-to-location-btn {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 300px;
-    height:45px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 10px;
-    background-color: #ffcccc; /* Tono rojo claro */
-    color: #333; /* Texto oscuro */
-    cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+
 
 /* Estilo al pasar el mouse sobre el botón de ubicación actual */
 #go-to-location-btn:hover {
     background-color: #ff9999;
 }
-
+.div_izq {
+    /* Agrega tus estilos aquí */
+    background-color: lightgrey;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 0;
+    /* Otros estilos... */
+}
 /* Estilos para el área de ingreso de PIN */
 #pin-input-container {
     display: block;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
-    background-color: #333333;
-    height: 50vh;
+    background-color: lightgrey;
+    height: 20vh;
 }
 
 .pin-input-container {
-    margin-top: 20vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: lightgrey;
     padding: 10px;
-
+    width: 33%;
 }
 
 h2 {
@@ -192,10 +189,10 @@ h2 {
 
 #verify-pin-button {
     margin-top: 10px;
-    margin-bottom: 20px; /* Agregado margen inferior */
+    margin-bottom: 0; /* Agregado margen inferior */
     background-color: #4caf50; /* Verde */
     color: #fff; /* Texto blanco */
-    width: 80%; /* Ajuste del ancho del botón */
+    width: 70%; /* Ajuste del ancho del botón */
     max-width: 250px; /* Máximo ancho del botón */
     height: 40px;
     border: none;
@@ -205,4 +202,11 @@ h2 {
     overflow: hidden;
     text-overflow: ellipsis;
     transition: background-color 0.3s, color 0.3s;
+}
+#my-location-container {
+    margin-bottom: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 10%;
+    background-color: lightgrey;
 }

@@ -133,7 +133,6 @@ function iniciarMap() {
                 map.setCenter(propertie.coords);
                 map.setZoom(19);
             });
-
             document.getElementById("buttons-container").appendChild(button);
         });
     };
