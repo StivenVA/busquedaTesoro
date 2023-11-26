@@ -205,15 +205,14 @@ const checkDistances = () => {
                 }
             }
         });
-
         const locationButton = document.createElement("button");
         locationButton.id = "go-to-location-btn";
         locationButton.classList.add("btn");
         locationButton.innerText = "Mi ubicación";
         locationButton.addEventListener("click", goToUserLocation);
-
         document.getElementById("my-location-container").appendChild(locationButton);
     }
+
 };
 
 const unlockStation = (stationId, enteredPIN) => {
