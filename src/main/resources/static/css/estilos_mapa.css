@@ -1,0 +1,212 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Estilos para el header */
+header {
+    background-color: rgba(10, 90, 136, 0.788);
+    clear: both;
+    content: '';
+    display: table;
+    width: 100%;
+    height: 22%;
+}
+
+.menu {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 80px;
+}
+
+.menu ul li {
+    display: inline-block;
+    margin-left: 180px;
+    padding: 25px 0;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #444444;
+    font-weight: bold;
+}
+
+
+#map {
+    height:80vh;
+    width: 100%;
+
+}
+
+.grid-template-column-3-4 {
+    display: grid;
+    grid-template-columns: 6.5fr 1fr;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+/* Estilos para el título del menú de botones */
+#buttons-container h2 {
+    color: #444444;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+.search-buttons-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: lightgrey;
+}
+
+#buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 40%;
+}
+
+/* Ajusta el margen inferior del botón de ubicación */
+#go-to-location-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    height: 45px;
+    margin: 10px 0 0; /* Ajusta el margen, he cambiado el margen inferior a 0 */
+    border: none;
+    border-radius: 10px;
+    background-color: #ffcccc; /* Tono rojo claro */
+    color: #333; /* Texto oscuro */
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Estilos para los botones */
+.btn {
+    max-width: 250px;
+    height: 40px;
+    margin: 10px 0; /* Ajusta el margen vertical */
+    border: none;
+    border-radius: 10px;
+    background-color: #e0e0e0; /* Gris claro */
+    color: #333; /* Texto oscuro */
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilo al pasar el mouse sobre los botones */
+.btn:hover {
+    background-color: #ccc; /* Gris un poco más oscuro */
+}
+
+/* Estilos para botones deshabilitados */
+.btn:disabled {
+    background-color: #f2f2f2; /* Gris claro más claro para botones deshabilitados */
+    color: #999; /* Texto gris para botones deshabilitados */
+}
+
+/* Estilos específicos para los botones dentro de #buttons-container */
+#buttons-container .btn {
+    display: block;
+    text-align: center;
+    line-height: 40px;
+}
+
+#buttons-container .btn:before {
+    content: attr(data-nombre); /* Muestra el atributo nombre en el botón */
+}
+
+/* Ajustes para el botón de ubicación actual */
+
+
+/* Estilo al pasar el mouse sobre el botón de ubicación actual */
+#go-to-location-btn:hover {
+    background-color: #ff9999;
+}
+.div_izq {
+    /* Agrega tus estilos aquí */
+    background-color: lightgrey;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 0;
+    /* Otros estilos... */
+}
+/* Estilos para el área de ingreso de PIN */
+#pin-input-container {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgrey;
+    height: 20vh;
+}
+
+.pin-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgrey;
+    padding: 10px;
+    width: 33%;
+}
+
+h2 {
+    color: dimgray; /* Color de texto oscuro */
+    font-size: 19px; /* Tamaño de fuente */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
+#pin-input-container label {
+    margin-bottom: 0.5rem;
+}
+
+#pin-input {
+    margin-top: 10px;
+    padding: 5px;
+    display: block;
+    color: #000;
+}
+
+#verify-pin-button {
+    margin-top: 10px;
+    margin-bottom: 0; /* Agregado margen inferior */
+    background-color: #4caf50; /* Verde */
+    color: #fff; /* Texto blanco */
+    width: 70%; /* Ajuste del ancho del botón */
+    max-width: 250px; /* Máximo ancho del botón */
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.3s, color 0.3s;
+}
+#my-location-container {
+    margin-bottom: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 10%;
+    background-color: lightgrey;
+}
