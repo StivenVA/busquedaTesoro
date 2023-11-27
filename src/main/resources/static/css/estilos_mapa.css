@@ -3,6 +3,17 @@ body {
     padding: 0;
     overflow: hidden;
 }
+.sec_1{
+    height: 80vh;
+    align-items: center;
+}
+.sec_2{
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    background-color: lightgrey;
+    width: 100%;
+}
 
 /* Estilos para el header */
 header {
@@ -39,7 +50,7 @@ header {
 
 
 #map {
-    height:82vh;
+    height:100%;
     width: 100%;
 
 }
@@ -47,7 +58,7 @@ header {
 .grid-template-column-3-4 {
     display: grid;
     grid-template-columns: 6.5fr 1fr;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -147,31 +158,14 @@ header {
     display: none;
 }
 
-.div_izq {
-    /* Agrega tus estilos aquí */
-    background-color: lightgrey;
-    border: 1px solid #ccc;
-    width: 100%;
-    margin: 0;
-    /* Otros estilos... */
-}
-/* Estilos para el área de ingreso de PIN */
-#pin-input-container {
-    display: block;
-    flex-direction: column;
-    align-items: center;
-    background-color: lightgrey;
-    height: 20vh;
-}
-
 .pin-input-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: lightgrey;
-    padding: 10px;
-    width: 33%;
+    width: 30%;
+    margin-left:0;
 }
 
 h2 {

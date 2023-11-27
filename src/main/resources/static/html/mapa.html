@@ -8,27 +8,30 @@
   <title>Mapa</title>
 </head>
 <body class="body">
+<section class="sec_1">
   <div class="grid-template-column-3-4">
     <div id="map"></div>
       <div class="search-buttons-container">
         <button id="go-to-location-btn" class="btn">Mi ubicación</button>
-         <div id="buttons-container" class="d-flex flex-column align-items-center mt-1"></div>
+        <div id="buttons-container" class="d-flex flex-column align-items-center mt-1"></div>
 
          <div id="my-location-container">
            <div id="go-to-location-placeholder"></div>
          </div>
         <button id="additional-button" class="btn">Mi Ubicacion</button>
       </div>
-
+    </div>
+</section>
+<section class="sec_2">
     <div class="pin-input-container">
       <h2>Desbloquee sus Estaciones</h2>
       <label for="pin-input">Ingrese el PIN:</label>
       <input type="number" id="pin-input">
       <button id="verify-pin-button" class="btn">Verificar PIN</button>
    </div>
+</section>
 
 
-  </div>
   <script src="../js/mapa.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjpZDeur855asN_FwestHE4SLjaqDpIPQ&libraries=places&callback=iniciarMap"></script>
 
