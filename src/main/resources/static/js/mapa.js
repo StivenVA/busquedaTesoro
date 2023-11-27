@@ -78,7 +78,8 @@ function iniciarMap() {
 
     const verifyPINButton = document.getElementById("verify-pin-button");
     verifyPINButton.addEventListener("click", checkDistances);
-
+    const additionalButton = document.getElementById("additional-button");
+    additionalButton.addEventListener("click", goToUserLocation);
     const addMarker = (properties) => {
         properties.forEach((propertie) => {
             const informationCard = createInfoWindow(propertie);

@@ -11,7 +11,7 @@ header {
     content: '';
     display: table;
     width: 100%;
-    height: 22%;
+    height: 25%;
 }
 
 .menu {
@@ -39,7 +39,7 @@ header {
 
 
 #map {
-    height:80vh;
+    height:82vh;
     width: 100%;
 
 }
@@ -80,23 +80,7 @@ header {
 }
 
 /* Ajusta el margen inferior del botón de ubicación */
-#go-to-location-btn {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 300px;
-    height: 45px;
-    margin: 10px 0 0; /* Ajusta el margen, he cambiado el margen inferior a 0 */
-    border: none;
-    border-radius: 10px;
-    background-color: #ffcccc; /* Tono rojo claro */
-    color: #333; /* Texto oscuro */
-    cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+
 
 /* Estilos para los botones */
 .btn {
@@ -135,14 +119,34 @@ header {
 #buttons-container .btn:before {
     content: attr(data-nombre); /* Muestra el atributo nombre en el botón */
 }
-
-/* Ajustes para el botón de ubicación actual */
-
-
-/* Estilo al pasar el mouse sobre el botón de ubicación actual */
-#go-to-location-btn:hover {
-    background-color: #ff9999;
+#my-location-container {
+    margin-bottom: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 10%;
+    background-color: lightgrey;
 }
+#additional-button {
+    align-self: center;
+    max-width: 100px;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ffcccc; /* Tono rojo claro */
+    color: #333; /* Texto oscuro */
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    bottom: 0;
+}
+#additional-button:hover {
+    background-color: #ff9999;/* Estilo al pasar el mouse sobre el botón de ubicación actual */
+}
+#go-to-location-btn {
+    display: none;
+}
+
 .div_izq {
     /* Agrega tus estilos aquí */
     background-color: lightgrey;
@@ -202,11 +206,4 @@ h2 {
     overflow: hidden;
     text-overflow: ellipsis;
     transition: background-color 0.3s, color 0.3s;
-}
-#my-location-container {
-    margin-bottom: 0;
-    padding: 0;
-    overflow: hidden;
-    width: 10%;
-    background-color: lightgrey;
 }
