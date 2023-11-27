@@ -1,9 +1,10 @@
 package com.example.grupob.busquedatesoro.controllers;
 
-import com.example.grupob.busquedatesoro.models.Clue;
 import com.example.grupob.busquedatesoro.models.Location;
 import com.example.grupob.busquedatesoro.services.UserService;
+import com.example.grupob.busquedatesoro.DTO.ClueDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +15,10 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("code-clue={code}&user={userId}")
-    public ResponseEntity<?> getNextCLue(@PathVariable String code,@PathVariable String userId){
+    @GetMapping()
+    public ResponseEntity<?> getNextCLue(@RequestParam String code, @RequestParam String userId){
 
-        Clue gottenClue;
+        ClueDTO gottenClue;
 
         try {
           gottenClue = userService.getClue(code,userId);

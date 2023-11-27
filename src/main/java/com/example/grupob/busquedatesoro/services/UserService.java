@@ -8,6 +8,7 @@ import com.example.grupob.busquedatesoro.repositories.ClueRepository;
 import com.example.grupob.busquedatesoro.repositories.LocationRepository;
 import com.example.grupob.busquedatesoro.repositories.UserRepository;
 
+import com.example.grupob.busquedatesoro.DTO.ClueDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +20,15 @@ public class UserService implements UserInterface {
         private final LocationRepository locationRepository;
         private final ClueRepository clueRepository;
 
-        public Clue getClue(String codeClue,String id){
+        public ClueDTO getClue(String codeClue, String id){
                 Clue foundedClue = clueRepository.findById(codeClue).orElse(null);
                 User foundedUser = userRepository.findById(id).orElse(null);
 
                 updateLocation(foundedClue,foundedUser);
 
-                return foundedClue;
+                return new ClueDTO(foundedClue,locationRepository.findByClueId(foundedClue).getLocationId());
         }
+
 
         @Override
         public void updateLocation(Clue foundedClue,User user) {
