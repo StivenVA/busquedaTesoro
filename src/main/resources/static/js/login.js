@@ -28,7 +28,9 @@ document.getElementById("send").addEventListener("click",async (e)=>{
 
     let response = await request.json();
 
-    window.localStorage.setItem("loc_id",response.locationId.locationId)
+    let locationId = response.locationId === null? 0: response.locationId.locationId;
+
+    window.localStorage.setItem("loc_id",locationId);
     window.localStorage.setItem("User_id",response.id);
 
     window.location = "../html/mapa.html";

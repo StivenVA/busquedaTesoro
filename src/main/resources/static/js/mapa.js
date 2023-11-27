@@ -32,6 +32,13 @@ let userLocation = null;
 
 window.addEventListener("DOMContentLoaded",()=>{
 
+    let locationsUnlocked = parseInt(window.localStorage.getItem("loc_id"));
+
+    if (locationsUnlocked!==0){
+        for (let i = 1; i<=locationsUnlocked; i++) {
+            document.getElementById(`button${i}`).disabled = false;
+        }
+    }
 })
 
 const getYourApproximateLocation = () => {
