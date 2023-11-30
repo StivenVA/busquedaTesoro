@@ -1,0 +1,45 @@
+#dynamic-buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Cambié 'flex-end' a 'center' para centrar verticalmente también */
+    height: 100vh;
+    background-color: lightgrey;
+    padding: 20px; /* Aumenté el espacio alrededor de los botones */
+}
+
+/* Estilos específicos para los botones dentro de #dynamic-buttons-container */
+#dynamic-buttons-container .btn {
+    width: 400px; /* Aumenté el ancho máximo */
+    height: 120px; /* Aumenté la altura */
+    margin-top: 60px;
+    border: none;
+    border-radius: 25px; /* Aumenté el radio de borde */
+    background-color: #e0e0e0;
+    color: #333;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: xx-large;
+}
+
+/* Estilo al pasar el mouse sobre los botones */
+#dynamic-buttons-container .btn:hover {
+    background-color: #ccc;
+}
+
+/* Estilos para botones deshabilitados */
+#dynamic-buttons-container .btn:disabled {
+    background-color: #f2f2f2;
+    color: #999;
+}
+
+/* Estilos específicos para los botones dentro de #dynamic-buttons-container */
+#dynamic-buttons-container .btn {
+    display: block;
+    text-align: center;
+    line-height: 40px;
+}
+
