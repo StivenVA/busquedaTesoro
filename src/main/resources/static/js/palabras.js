@@ -1,0 +1,18 @@
+const words = [
+    'Mohan',
+    'Llorona',
+    'Silbon',
+    'Sombreron',
+    'Tunda',
+    'Duende',
+    'Pombero',
+    'Patasola',
+    'Cadejo',
+    'Chupacabra',
+    'Hojarasquin',
+    'Sayona',
+    'Yacuruna',
+    'Cuco',
+    'Segua',
+    'Tunchi',
+];

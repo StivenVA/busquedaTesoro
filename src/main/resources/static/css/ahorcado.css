@@ -1,0 +1,73 @@
+.hidden {
+    color: transparent;
+}
+
+body {
+    background-color: #4a4063;
+    color: #fff;
+    font-family: 'SF Pixelate', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#wordContainer {
+    margin-top: 20px;
+}
+
+.letter {
+    margin: 0 7px;
+    position: relative;
+    text-align: center;
+}
+
+.letter::after{
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    min-width: 12px;
+}
+
+#startButton {
+    margin-top: 40px;
+    appearance: none;
+    font-family: 'SF Pixelate', sans-serif;
+    border: none;
+    width: 300px;
+    padding: 10px;
+    background: #d95d39;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#letterButtons {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);  /* 10 columnas para las letras */
+    gap: 5px;
+    margin-top: 60px;
+}
+
+.letterButton {
+    appearance: none;
+    font-family: 'SF Pixelate', sans-serif;
+    border: none;
+    padding: 10px;
+    background: #4a4063;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.letterButton:hover {
+    background: #3a3053;
+}
