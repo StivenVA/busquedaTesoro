@@ -7,7 +7,6 @@
 body{
     width: 100%;
     height: 100vh;
-    font-family: sans-serif;
 }
 
 .left-form{
@@ -15,79 +14,126 @@ body{
     height: 100%;
     overflow: hidden;
     float: left;
-    background: #fff url('../img/index_bg.jpg')center;
+    background: #31572c;
     background-size: cover;
+    position: relative;
+    text-align: center;
 }
 
-.rigth-form{
+.left-form-img{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 10%;
+    border: 3px dashed #ffffff;
+    text-align: center;
+    top: 10%;
+}
+
+.left-form h1 {
+    display: inline-block;
+    position: relative;
+    margin-top: 40px;
+    color: #a7c957;
+    font-size: 40px;
+    font-family: 'Cormorant Garamond', serif;
+}
+.left-form h1::before{
+    content: '';
+    position: absolute;
+    width: 550px;
+    height: 3px;
+    background-color: currentColor;
+    top: 1.2em;
+}
+
+.rigth-form {
     width: 40%;
-    height: 100%;
     margin: 0;
     float: left;
-    background-color: #cec9c99a;
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
 }
-
 .rigth-form form{
-    margin-top: 20%;
-    height: 60%;
-    width: 55%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: whitesmoke;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    background-color: #90a955;
+    border-radius: 15px;
+    width: 85%;
+    padding: 15px;
 }
 
 .rigth-form h2{
     font-size: 2em;
-    color: rgba(10, 90, 136, 0.788);
-    margin: 20px 0;
+    color: #31572c;
     font-weight: bold;
+    font-family: 'Goudy Bookletter 1911', serif;
+    border-bottom: 1px solid #ffffff;
 }
 
 .rigth-form form > input{
     width: 100%;
     padding: 10px 0;
-    font-size: 1.2em;
+    font-size: 16px;
+    height: 40px;
+    border: none;
+    background: #ecf39e;
+    outline: none;
+    border-radius: 15px;
+    padding-left: 10px;
+}
+.rigth-form input::placeholder {
+    text-align: left;
 }
 
 .rigth-form label {
     width: 100%;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     margin: 20px 0;
+    pointer-events: none;
+    color: #0c0c0c;
 }
 
 .check{
     width: 100%;
-    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .rigth-form input[type="submit"]{
-    width: 80%;
-    background-color: rgba(10, 90, 136, 0.788);
+    width: 30%;
+    background-color: #ffffff;
     border-radius: 15px;
-    font-size: 18px;
     padding: 9px 20px;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 20px;
+    color: #31572c;
 }
 .rigth-form input[type="submit"]:hover{
     text-decoration: underline;
 }
 
 .rigth-form a{
-    padding: 15px 0px;
-    color:rgba(10, 90, 136, 0.788);
+    padding: 10px 0px;
+    color: #31572c;
     text-decoration: none;
 }
 
-.rigth-form a :hover{
+.rigth-form a:hover {
     text-decoration: underline;
 }
+
 @media (max-width: 1500px) {
     .rigth-form form{
         height: 60%;

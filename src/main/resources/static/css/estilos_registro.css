@@ -15,8 +15,37 @@ body{
     height: 100%;
     overflow: hidden;
     float: left;
-    background: #fff url('../img/index_bg.jpg')center;
+    background-color: #31572c;
     background-size: cover;
+    position: relative;
+    text-align: center;
+}
+.left-form-img{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 10%;
+    border: 3px dashed #ffffff;
+    text-align: center;
+    top: 10%;
+}
+
+.left-form h1 {
+    display: inline-block;
+    position: relative;
+    margin-top: 40px;
+    color: #a7c957;
+    font-size: 40px;
+    font-family: 'Cormorant Garamond', serif;
+}
+.left-form h1::before{
+    content: '';
+    position: absolute;
+    width: 330px;
+    height: 3px;
+    background-color: currentColor;
+    top: 1.2em;
 }
 
 .rigth-form{
@@ -24,37 +53,44 @@ body{
     height: 100%;
     margin: 0;
     float: left;
-    background-color: #cec9c99a;
+    background-color: #90a955;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .rigth-form form{
     margin-top: 50px;
     margin-bottom: 25px;
-    height: 92%;
-    width: 65%;
+    height: 100%;
+    width: 95%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: whitesmoke;
+    background-color: #90a955;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.rigth-form h2{
-    font-size: 2em;
-    color: rgba(10, 90, 136, 0.788);
-    margin: 20px 0;
+    padding-top: 20px;
+    font-size: 1em;
+    color: #0c0c0c;
     font-weight: bold;
+    font-family: 'Goudy Bookletter 1911', serif;
 }
 
 .rigth-form form > input{
     width: 100%;
     padding: 10px 0;
-    font-size: 1.2em;
+    height: 40px;
+    border: none;
+    background: #ecf39e;
+    outline: none;
+    border-radius: 15px;
+    padding-left: 10px;
+}
+.rigth-form input::placeholder {
+    text-align: left;
 }
 
 .rigth-form label {
@@ -64,18 +100,15 @@ body{
     margin: 20px 0;
 }
 
-.check{
-    width: 100%;
-    margin: 20px 0;
-}
-
 .rigth-form input[type="submit"]{
-    width: 80%;
-    background-color: rgba(10, 90, 136, 0.788);
+    width: 30%;
+    background-color: #ffffff;
     border-radius: 15px;
-    font-size: 18px;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 20px;
     padding: 9px 20px;
     margin-top: 20px;
+    color: #31572c;
 }
 .rigth-form input[type="submit"]:hover{
     text-decoration: underline;
@@ -83,11 +116,11 @@ body{
 
 .rigth-form a{
     padding: 15px 0px;
-    color:rgba(10, 90, 136, 0.788);
+    color: #31572c;
     text-decoration: none;
 }
 
-.rigth-form a :hover{
+.rigth-form a:hover{
     text-decoration: underline;
 }
 @media (max-width: 1500px) {
@@ -155,4 +188,5 @@ body{
         height: 95%;
         width: 85%;
     }
+
 }
