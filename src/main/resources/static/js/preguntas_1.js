@@ -3,30 +3,30 @@ const questions = [
         question: '¿Que mito representa la imagen mostrada?',
         image: '../img/bolaf.png',
         answers: [
-            { text: 'Madre Monte', correct: false },
-            { text: 'Bola de Fuego', correct: true },
-            { text: 'Sombreron', correct: false },
-            { text: 'Patasola', correct: false }
+            {text: 'Madre Monte', correct: false},
+            {text: 'Bola de Fuego', correct: true},
+            {text: 'Sombreron', correct: false},
+            {text: 'Patasola', correct: false}
         ]
     },
     {
         question: '¿Que mito representa la imagen mostrada?',
         image: '../img/llorona.png',
         answers: [
-            { text: 'Llorona', correct: true },
-            { text: 'Mano Peluda', correct: false },
-            { text: 'Hombre Caiman', correct: false },
-            { text: 'Muelona', correct: false }
+            {text: 'Llorona', correct: true},
+            {text: 'Mano Peluda', correct: false},
+            {text: 'Hombre Caiman', correct: false},
+            {text: 'Muelona', correct: false}
         ]
     },
     {
         question: '¿Que mito representa la imagen mostrada?',
         image: '../img/silbon.png',
         answers: [
-            { text: 'El Salvaje', correct: false },
-            { text: 'Juan Machete', correct: false },
-            { text: 'Silbon', correct: true },
-            { text: 'Duende', correct: false }
+            {text: 'El Salvaje', correct: false},
+            {text: 'Juan Machete', correct: false},
+            {text: 'Silbon', correct: true},
+            {text: 'Duende', correct: false}
         ]
     },
 ];
@@ -45,10 +45,12 @@ function startGame() {
     allQuestionsCorrect = false;
     showQuestion(questions[currentQuestionIndex]);
 }
+
 function goBack() {
     // Cambia la URL según tu estructura de carpetas y archivos
     window.location.href = '../html/mapa.html';
 }
+
 function showQuestion(question) {
     questionText.innerText = question.question;
     const imageElement = document.getElementById('question-image');
@@ -87,12 +89,14 @@ function nextQuestion() {
         checkAllQuestionsCorrect()
     }
 }
+
 function checkAllQuestionsCorrect() {
     if (correctAnswers === questions.length) {
         allQuestionsCorrect = true;
     }
     showResultMessage();
 }
+
 function showResultMessage() {
     nextButton.style.display = 'none';
     let resultMessage;
@@ -118,5 +122,6 @@ function showResultMessage() {
         }
     });
 }
+
 // Inicia el juego al cargar la página
 startGame();

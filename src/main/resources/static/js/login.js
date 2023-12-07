@@ -1,3 +1,4 @@
+
 document.getElementById("send").addEventListener("click",async (e)=>{
     e.preventDefault();
 
@@ -20,15 +21,19 @@ document.getElementById("send").addEventListener("click",async (e)=>{
         body:JSON.stringify(user)
     });
 
-    if (request.status!==404){
-        let response = await request.json();
-
-        alert("usuario: "+ JSON.stringify(response));
-    }
-    else{
-        alert("usuario o contraseña incorectos");
+    if (request.status===404){
+        alert("usuario o contraseña incorrectos");
+        return;
     }
 
-    email.value = "";
-    password.value = "";
+    let response = await request.json();
+
+    let locationId = response.locationId === null? 0: response.locationId.locationId;
+
+    window.localStorage.setItem("loc_id",locationId);
+    window.localStorage.setItem("User_id",response.id);
+
+    window.location = "../html/mapa.html";
+
+
 })

@@ -1,6 +1,7 @@
 package com.example.grupob.busquedatesoro.controllers;
 
 import com.example.grupob.busquedatesoro.models.User;
+import com.example.grupob.busquedatesoro.services.SignUpService;
 import com.example.grupob.busquedatesoro.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SignUpUserController {
 
-    private final UserService userService;
+    private final SignUpService signUpService;
 
     @PostMapping
     public ResponseEntity<Boolean> userRegister(@RequestBody User user){
 
-        if (userService.addUser(user)) return ResponseEntity.ok(true);
+        if (signUpService.addUser(user)) return ResponseEntity.ok(true);
 
         return ResponseEntity.badRequest().build();
     }

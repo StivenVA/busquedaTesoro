@@ -1,12 +1,11 @@
 package com.example.grupob.busquedatesoro.interfaces;
 
+import com.example.grupob.busquedatesoro.models.Clue;
+import com.example.grupob.busquedatesoro.models.Location;
 import com.example.grupob.busquedatesoro.models.User;
 
-import java.util.Optional;
-
 public interface UserInterface {
+    void updateLocation(Clue codeClue, User user);
 
-    Optional<User> validationUser(User user);
-
-    boolean addUser(User user);
+    Location getLocation(String userId);
 }

@@ -11,5 +11,7 @@ public class Location {
     @Column(name = "location_id")
     int locationId;
     String name;
-
+    @JoinColumn(name = "clue_id")
+    @OneToOne(fetch = FetchType.EAGER)
+    Clue clueId;
 }

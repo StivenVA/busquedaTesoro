@@ -13,6 +13,7 @@ public class Clue {
 
     @Id
     @Column(name = "clue_id")
-    int clueId;
+    String clueId;
     String description;
+    String city;
 }

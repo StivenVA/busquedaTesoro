@@ -3,17 +3,6 @@ body {
     padding: 0;
     overflow: hidden;
 }
-.sec_1{
-    height: 80vh;
-    align-items: center;
-}
-.sec_2{
-    height: 20vh;
-    display: flex;
-    flex-direction: column;
-    background-color: lightgrey;
-    width: 100%;
-}
 
 /* Estilos para el header */
 header {
@@ -22,7 +11,7 @@ header {
     content: '';
     display: table;
     width: 100%;
-    height: 25%;
+    height: 22%;
 }
 
 .menu {
@@ -50,7 +39,7 @@ header {
 
 
 #map {
-    height:100%;
+    height:80vh;
     width: 100%;
 
 }
@@ -58,7 +47,7 @@ header {
 .grid-template-column-3-4 {
     display: grid;
     grid-template-columns: 6.5fr 1fr;
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -91,7 +80,23 @@ header {
 }
 
 /* Ajusta el margen inferior del botón de ubicación */
-
+#go-to-location-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    height: 45px;
+    margin: 10px 0 0; /* Ajusta el margen, he cambiado el margen inferior a 0 */
+    border: none;
+    border-radius: 10px;
+    background-color: #ffcccc; /* Tono rojo claro */
+    color: #333; /* Texto oscuro */
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /* Estilos para los botones */
 .btn {
@@ -130,32 +135,29 @@ header {
 #buttons-container .btn:before {
     content: attr(data-nombre); /* Muestra el atributo nombre en el botón */
 }
-#my-location-container {
-    margin-bottom: 0;
-    padding: 0;
-    overflow: hidden;
-    width: 10%;
+
+/* Ajustes para el botón de ubicación actual */
+
+
+/* Estilo al pasar el mouse sobre el botón de ubicación actual */
+#go-to-location-btn:hover {
+    background-color: #ff9999;
+}
+.div_izq {
+    /* Agrega tus estilos aquí */
     background-color: lightgrey;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 0;
+    /* Otros estilos... */
 }
-#additional-button {
-    align-self: center;
-    max-width: 100px;
-    height: 45px;
-    border: none;
-    border-radius: 10px;
-    background-color: #ffcccc; /* Tono rojo claro */
-    color: #333; /* Texto oscuro */
-    cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    bottom: 0;
-}
-#additional-button:hover {
-    background-color: #ff9999;/* Estilo al pasar el mouse sobre el botón de ubicación actual */
-}
-#go-to-location-btn {
-    display: none;
+/* Estilos para el área de ingreso de PIN */
+#pin-input-container {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgrey;
+    height: 20vh;
 }
 
 .pin-input-container {
@@ -164,8 +166,8 @@ header {
     align-items: center;
     justify-content: center;
     background-color: lightgrey;
-    width: 30%;
-    margin-left:0;
+    padding: 10px;
+    width: 33%;
 }
 
 h2 {
@@ -186,105 +188,25 @@ h2 {
 }
 
 #verify-pin-button {
-    display: none ;
+    margin-top: 10px;
+    margin-bottom: 0; /* Agregado margen inferior */
+    background-color: #4caf50; /* Verde */
+    color: #fff; /* Texto blanco */
+    width: 70%; /* Ajuste del ancho del botón */
+    max-width: 250px; /* Máximo ancho del botón */
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.3s, color 0.3s;
 }
-.modal-grande{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+#my-location-container {
+    margin-bottom: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 10%;
     background-color: lightgrey;
-    width: 30%;
-    margin-left:0;
-    margin-top: 20px;
 }
-.boton-modal label{
-    padding: 10px 15px;
-    background-color: #5488a3;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 300ms ease;
-}
-.boton-modal label:hover{
-    background-color: #185E83;
-}
-/*:::Fin Boton-Modal:::*/
-
-/*:::Ventana Modal:::*/
-#btn-modal{
-    display: none;
-}
-.container-modal{
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0; left: 0;
-    background-color: rgba(144, 148, 150, 0.8);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-}
-#btn-modal:checked ~ .container-modal{
-    display: flex;
-}
-.content-modal{
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 4px;
-}
-.content-modal h2{
-    margin-bottom: 15px;
-}
-.content-modal p{
-    padding: 15px 0px;
-    border-top: 1px solid #dbdbdb;
-    border-bottom: 1px solid #dbdbdb;
-}
-.content-modal .btn-cerrar{
-    width: 100%;
-    margin-top: 15px;
-    display: flex;
-    justify-content: flex-end;
-}
-.content-modal .btn-enviar{
-    width: 100%;
-    margin-top: 15px;
-    display: flex;
-    justify-content: flex-end;
-}
-.content-modal .btn-cerrar label{
-    padding: 7px 10px;
-    background-color: #CD1616;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 300ms ease;
-}
-.content-modal .btn-enviar label{
-    padding: 7px 10px;
-    background-color: #5488a3;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 300ms ease;
-}
-.content-modal .btn-cerrar label:hover{
-    background-color:#185E83;
-}
-.cerrar-modal{
-    width:100%;
-    height: 100vh;
-    position: absolute;
-    top:0; left: 0;
-    z-index: -1;
-}
-@media screen and (max-width:800px) {
-    .content-modal{
-        width: 90%;
-    }
-}
-/*:::Fin Ventana Modal:::*/
