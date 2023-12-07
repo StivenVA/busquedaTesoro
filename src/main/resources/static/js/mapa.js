@@ -39,6 +39,9 @@ window.addEventListener("DOMContentLoaded",()=>{
             document.getElementById(`button${i}`).disabled = false;
         }
     }
+    else{
+        document.getElementById(`button1`).disabled = false;
+    }
 })
 
 const getYourApproximateLocation = () => {
@@ -114,7 +117,6 @@ function iniciarMap() {
     }, 1000);
 }
 
-let unlockedStations = [];
 const createMyUbicationButton = () => {
         const locationButton = document.createElement("button");
         locationButton.id = "go-to-location-btn";

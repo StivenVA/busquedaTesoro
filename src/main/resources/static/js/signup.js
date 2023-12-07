@@ -16,6 +16,7 @@ document.getElementById("send").addEventListener("click",async (e)=>{
         user.id = id.value;
         user.phone = phone.value;
         user.name = name.value;
+        user.locationId = 1;
     }
 
     let request = await fetch("../signup",{
