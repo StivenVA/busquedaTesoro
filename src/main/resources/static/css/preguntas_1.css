@@ -5,16 +5,18 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
+    background-color: #90a955;
 }
 
 #quiz-container {
     max-width: 600px;
     width: 100%;
     text-align: center;
-    background-color: #f9f9f9;
-    padding: 20px;
+    background-color: #ecf39e;
+    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Mochiy Pop P One', sans-serif;
 }
 
 .btn-container {
@@ -23,22 +25,26 @@ body {
 }
 
 .btn {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #3498db;
-    color: #fff;
+    background-color: #f3de2c;
+    color: #020202;
     border: none;
-    border-radius: 4px;
+    border-radius: 60px;
     cursor: pointer;
     transition: background-color 0.3s;
+
+    margin: 10px auto;
+    box-shadow: 5px 5px 0 #3d3c3c;
+    padding: 8px 100px;
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-size: 15px;
 }
 
 .btn:hover {
-    background-color: #2980b9;
+    background-color: #7cb518;
 }
 
 .btn.selected {
-    background-color: #f39c12;
+    background-color: #fb6107;
     color: #fff;
 }
 
@@ -49,19 +55,22 @@ body {
 }
 
 #next-button {
-    padding: 10px;
+    /*padding: 10px;*/
     margin-left: 10px;
     margin-right: 10px;
-    background-color: #3498db;
-    color: #fff;
+    background-color: #90a955;
+    color: #000;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s;
+
+    padding: 8px 20px;
+    transition: .5s;
 }
 
 #next-button:hover {
-    background-color: #2980b9;
+    background-color: #ffc971;
+    transform: scale(1.1);
 }
 
 #next-button.selected {
@@ -69,6 +78,35 @@ body {
     color: #fff;
 }
 #question-image {
-    max-width: 100%; /* La imagen no superará el ancho del contenedor */
+    max-width: 70%; /* La imagen no superará el ancho del contenedor */
     height: auto;    /* La altura se ajustará automáticamente para mantener la proporción original */
+    border-radius: 15px;
+    border: 3px dashed #90a955;
+}
+
+@media (max-width: 800px) {
+    body{
+        background-color: #9485be;
+    }
+    #quiz-container {
+        max-width: 90%; /* Reduce el ancho del contenedor al 90% */
+        padding: 5px; /* Ajusta el relleno del contenedor */
+    }
+
+    .btn {
+        padding: 8px 50px; /* Ajusta el padding de los botones */
+    }
+
+    #next-button {
+        padding: 8px 15px; /* Ajusta el padding del botón siguiente */
+    }
+
+    #question-image {
+        max-width: 90%; /* Ajusta el ancho máximo de la imagen */
+    }
+}
+@media (max-width: 720px) {
+    body{
+        background-color: #5cd7c9;
+    }
 }
