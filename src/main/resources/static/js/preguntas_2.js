@@ -1,7 +1,7 @@
 const questions = [
     {
         //1
-        question: '¿Quién es el protagonista principal en la leyenda del Silbón',
+        question: '¿Quién es el protagonista principal en la leyenda del Silbón?',
         image: '../img/silbon.png',
         answers: [
             { text: 'Un campesino', correct: false },
@@ -22,7 +22,7 @@ const questions = [
     },
     {
         question: '¿Cuál es el propósito del Chullachaqui al engañar a los viajeros?',
-        image: '../img/chullachaqui.png',
+        image: '../img/mitoChullachaqui.png',
         answers: [
             { text: 'Proteger la selva', correct: false },
             { text: 'Castigar a los curiosos', correct: true },

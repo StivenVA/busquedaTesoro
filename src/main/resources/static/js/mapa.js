@@ -50,15 +50,11 @@ function iniciarMap() {
 
     createMyUbicationButton();
     getYourApproximateLocation();
-    setInterval(() => {
-        createMyUbicationButton();
-    }, 1000);
 }
 
 const createMyUbicationButton = () => {
-    const locationButton = document.createElement("button");
+    const locationButton = document.createElement("a");
     locationButton.id = "go-to-location-btn";
-    locationButton.classList.add("btn");
     locationButton.innerText = "Mi ubicación";
     locationButton.addEventListener("click", ()=>{
         if (userLocation) {
@@ -68,8 +64,8 @@ const createMyUbicationButton = () => {
             alert("No se pudo obtener la ubicación actual.");
         }
     });
-
-    document.getElementById("my-location-container").appendChild(locationButton);
+    locationButton.insertAdjacentHTML("afterbegin", "<i class=\"fa-solid fa-street-view\"></i>");
+    document.getElementById("menu").appendChild(locationButton);
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
