@@ -15,6 +15,9 @@ public class SignUpService {
     public boolean addUser(User user){
 
         boolean added = userRepository.findByEmailOrId(user.getEmail(), user.getId()) == null;
+        boolean fieldsAreBlank = userFieldsAreBlank(user);
+
+        if (fieldsAreBlank) throw new IllegalArgumentException("Tiene que llenar todos los campos del usuario");
 
         if (added){
             String hashedPassword = BCrypt.hashpw(user.getPassword().trim(),BCrypt.gensalt());
@@ -25,4 +28,14 @@ public class SignUpService {
 
         return added;
     }
+
+    private boolean userFieldsAreBlank(User user){
+
+        return user.getPhone().isBlank()
+                || user.getEmail().isBlank()
+                || user.getPassword().isBlank()
+                || user.getName().isBlank()
+                || user.getId().isBlank();
+    }
+
 }

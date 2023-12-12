@@ -7,6 +7,7 @@ document.getElementById("send").addEventListener("click",async (e)=>{
     const id = document.getElementById("id");
     const name = document.getElementById("name");
     const phone = document.getElementById("telephone");
+    let flag = true;
 
     let user = {};
 
@@ -18,19 +19,19 @@ document.getElementById("send").addEventListener("click",async (e)=>{
         user.name = name.value;
     }
 
-    let request = await fetch("../signup",{
-        method:"POST",
-        headers:{
-            "Content-type":"application/json",
-            "Accept":"application/json"
-        },
-        body:JSON.stringify(user)
-    });
+        let request = await fetch("../signup",{
+            method:"POST",
+            headers:{
+                "Content-type":"application/json",
+                "Accept":"application/json"
+            },
+            body:JSON.stringify(user)
+        });
 
-    email.value = "";
-    password.value = "";
-    passwordConfirmation.value = "";
-    name.value = "";
-    id.value="";
-    phone.value="";
+        alert(await request.text());
+        if (request.status === 200 ){
+            window.location = "../index.html";
+        }
+
+
 })

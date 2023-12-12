@@ -1,6 +1,60 @@
 let map;
 const maxDistance = 0.8;
 let userLocation = null;
+//
+let ubications = [
+    {
+        id:1,
+        lat: 3.5426036901021205,
+        lng:-73.7068887579774
+    },{
+        id:2,
+        lat: 3.5539444933132858,
+        lng: -73.71303408993533
+    },
+    {
+        id:3,
+        lat: 4.2866459768536105,
+        lng: -73.5854203071232
+    },
+    {
+        id:4,
+        lat: 4.257540591844404,
+        lng:-73.56743739178074
+    },
+    {
+        id:5,
+        lat: 4.125358127033722,
+        lng:-73.57477722513634
+    },
+    {
+        id:6,
+        lat: 4.122234006641089,
+        lng:-73.64221554760327
+    },
+    {
+        id:7,
+        lat: 4.267983283785695,
+        lng:-73.48828507643793
+    },
+    {
+        id:8,
+        lat: 4.26959147693378,
+        lng:-73.49083194752804
+    },
+    {
+        id:9,
+        lat: 3.9911047692555024,
+        lng:-73.75700809733144
+    },
+    {
+        id:10,
+        lat:3.993751040501378,
+        lng:-73.77269577643976
+    }
+]
+
+
 
 const getYourApproximateLocation = () => {
     if (navigator.geolocation) {
@@ -19,10 +73,8 @@ const getYourApproximateLocation = () => {
                 alert("Tu navegador está bien, pero ocurrió un error al obtener tu ubicación");
             }
         );
-    } else {
-        alert("Tu navegador no cuenta con localización ");
-    }
 
+    }
 
 };
 
@@ -35,6 +87,14 @@ function iniciarMap() {
         zoom: 6,
         center: coords,
     });
+
+    let currentLocation = parseInt(window.localStorage.getItem("loc_id"));
+
+    if (currentLocation!==0){
+        for (let i = 0; i < currentLocation; i++) {
+            generateMarker(ubications[i].lat,ubications[i].lng);
+        }
+    }
 
     createMyUbicationButton();
     getYourApproximateLocation();
@@ -60,6 +120,18 @@ const createMyUbicationButton = () => {
 
         if (confirmation) window.location = "preguntas_1.html";
     }
+};
+
+let generateMarker = (lat,lng)=>{
+    let marcador = new google.maps.Marker({
+        position: new google.maps.LatLng(lat,lng),
+        map,
+        animation:google.maps.Animation.DROP,
+        icon:{
+            url:"../icons/bandera.png",
+            scaledSize: new google.maps.Size(50, 50)
+        }
+    });
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -96,3 +168,7 @@ const checkPIN = async () => {
 };
 
 document.getElementById("verify-pin-button").addEventListener("click",checkPIN);
+document.getElementById("cerrar-sesion").addEventListener("click", ()=>{
+    window.localStorage.removeItem("loc_id");
+    window.localStorage.removeItem("User_id");
+})
