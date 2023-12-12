@@ -2,20 +2,6 @@ let map;
 const maxDistance = 0.8;
 let userLocation = null;
 
-window.addEventListener("DOMContentLoaded",()=>{
-
-    let locationsUnlocked = parseInt(window.localStorage.getItem("loc_id"));
-
-    if (locationsUnlocked!==0){
-        for (let i = 1; i<=locationsUnlocked; i++) {
-            document.getElementById(`button${i}`).disabled = false;
-        }
-    }
-    else{
-        document.getElementById(`button1`).disabled = false;
-    }
-})
-
 const getYourApproximateLocation = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -36,6 +22,8 @@ const getYourApproximateLocation = () => {
     } else {
         alert("Tu navegador no cuenta con localización ");
     }
+
+
 };
 
 function iniciarMap() {
@@ -66,6 +54,12 @@ const createMyUbicationButton = () => {
     });
     locationButton.insertAdjacentHTML("afterbegin", "<i class=\"fa-solid fa-street-view\"></i>");
     document.getElementById("menu").appendChild(locationButton);
+
+    if (parseInt(window.localStorage.getItem("loc_id"))===0){
+        let confirmation = confirm("Bienvenido a tu aventura, pasate por nuestras estaciones para que descubras tu primera pista");
+
+        if (confirmation) window.location = "preguntas_1.html";
+    }
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -94,8 +88,10 @@ const checkPIN = async () => {
         return ;
     }
     let response = await request.json();
-    window.localStorage.setItem("loc_id",response.id)
-    window.location = `preguntas_${response.id}.html`;
+    window.localStorage.setItem("loc_id",response.id);
+
+    if (response.id!==10) window.location = `preguntas_${response.id+1}.html`;
+    else alert("Juego completado");
 
 };
 

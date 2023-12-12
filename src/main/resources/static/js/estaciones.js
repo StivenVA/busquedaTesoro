@@ -31,8 +31,8 @@ window.addEventListener("DOMContentLoaded",()=>{
 
     let locationsUnlocked = parseInt(window.localStorage.getItem("loc_id"));
 
-    if (locationsUnlocked!==0){
-        for (let i = 1; i<=locationsUnlocked; i++) {
+    if (locationsUnlocked!==0 && locationsUnlocked!==10){
+        for (let i = 1; i<=locationsUnlocked+1; i++) {
             document.getElementById(`button${i}`).disabled = false;
         }
     }
@@ -40,18 +40,6 @@ window.addEventListener("DOMContentLoaded",()=>{
         document.getElementById(`button1`).disabled = false;
     }
 });
-
-const createStations = (propertie) => {
-    return `
-  <div>
-    <h3 class="text-reset py-1">${propertie.nombre}</h3>
-    <div class="d-flex justify-content-space-between">
-      <p><b>Estacion: </b>${propertie.estacion}</p>
-    </div>
-  </div>
-  `;
-};
-
 document.addEventListener("DOMContentLoaded", function () {
     const dynamicButtonsContainer = document.getElementById("dynamic-buttons-container");
 
