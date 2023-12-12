@@ -67,8 +67,8 @@ body{
     align-items: center;
     background-color: #90a955;
     border-radius: 15px;
-    width: 85%;
-    height: 60%;
+    width: 80%;
+    height: 75%;
     padding: 25px;
 }
 
@@ -82,9 +82,9 @@ body{
 }
 
 .rigth-form form > input{
-    width: 70%;
+    width: 75%;
     height: 60px;
-    font-size: 2.2em;
+    font-size: 2em;
     color: #cc5803;
     border: none;
     background: #ecf39e;
@@ -135,15 +135,43 @@ body{
     text-decoration: underline;
 }
 
-@media (max-width: 1500px) {
-    .rigth-form form{
-        height: 60%;
-        margin-top: 30%;
-        margin-bottom: 10%;
-    }
-}
 
-@media (max-width: 950px) {
+@media (max-width: 1100px) {
+    .rigth-form{
+        width: 40%;
+    }
+    .rigth-form form{
+        height: 100%;
+    }
+    .rigth-form form > input{
+        width: 100%;
+        height: 55px;
+        font-size: 1.2em;
+    }
+    .rigth-form label {
+        width: 100%;
+        font-size: 1.2em;
+    }
+
+    .rigth-form input[type="submit"]{
+        margin-top: 20px;
+    }
+
+    .rigth-form a{
+        font-size: 1.2em;
+    }
+    .left-form h1 {
+        font-size: 45px;
+    }
+    .left-form h1::before{
+        width: 590px;
+    }
+    .rigth-form h2{
+        font-size: 2.5em;
+    }
+
+}
+@media (max-width: 800px) {
     .left-form {
         display: none;
     }
@@ -152,23 +180,56 @@ body{
         width: 100%;
     }
     .rigth-form form{
-        margin-top: 10%;
-        margin-bottom: 10%;
-        height: 75%;
-    }
-}
-@media (max-width: 600px) {
-    .left-form {
-        display: none;
-    }
-
-    .rigth-form{
-        width: 100%;
-    }
-    .rigth-form form{
-        margin-top: 10%;
-        margin-bottom: 5%;
-        height: 80%;
+        height: 100%;
         width: 90%;
+        border: 3px dashed #d0bc56;
+    }
+    .rigth-form label {
+        width: 100%;
+        font-size: 1.5em;
+    }
+
+    .rigth-form input[type="submit"]{
+        margin-top: 20px;
+    }
+
+    .rigth-form a{
+        font-size: 1.5em;
+    }
+}
+@media (max-width: 500px) {
+    .left-form {
+        display: none;
+    }
+
+    .rigth-form{
+        width: 100%;
+    }
+    .rigth-form form{
+        height: 100%;
+        width: 100%;
+        border: 3px dashed #d0bc56;
+    }
+    .rigth-form h2{
+        font-size: 2em;
+    }
+    .rigth-form form > input{
+        width: 100%;
+        height: 60px;
+        font-size: 1.5em;
+    }
+
+    .rigth-form label {
+        width: 100%;
+        font-size: 1.5em;
+    }
+
+    .rigth-form input[type="submit"]{
+        margin-top: 20px;
+        width: 35%;
+    }
+
+    .rigth-form a{
+        font-size: 1.5em;
     }
 }
