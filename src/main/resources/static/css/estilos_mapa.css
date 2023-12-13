@@ -117,3 +117,60 @@ header nav ul a:hover{
 .btn2:hover{
     background-color: #94dc88;
 }
+/*#check{
+    display: none;
+}
+
+.checkbtn{
+    font-size: 25px;
+    color: #46106E;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+nav ul.menu li {
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+}*/
+@media (max-width:500px) {
+    .checkbtn{
+        display: block;
+    }
+
+    .navbar{
+        height: 0vh;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        background-color: #B48EFA;
+        text-align: center;
+
+        transition: all 0.5s;
+        overflow: hidden;
+    }
+
+    .navbar ul.menu{
+        float: none;
+        display: block;
+        width: 174px;
+        margin: 0 auto;
+        opacity: 0;
+    }
+
+    .navbar ul.menu a:hover{
+        color: aqua;
+    }
+    .navbar.active{
+        height: 100vh;
+    }
+
+    .navbar.active ul.menu{
+        opacity: 1;
+    }
+
+}

@@ -1,124 +1,98 @@
-const questions = [
-    {
-        question: '¿Cómo se caracteriza el Chullachaqui en la mitología de los Llanos Orientales?',
-        image: '../img/chullachaqui.png',
-        answers: [
-            { text: 'Un espíritu luminoso', correct: false },
-            { text: 'Un ser con una pierna más corta que la otra', correct: true },
-            { text: 'Un animal mitológico', correct: false },
-            { text: 'Un gigante de la selva', correct: false }
-        ]
-    },
+let cardsOpen = 0;
+let card1 = null;
+let card2 = null;
+let firstResult = null;
+let secondResult = null;
+let movements = 0;
+let successes = 0;
+let timer = false;
+let time = 45;
+let startTime = time;
+let regressiveTimeId = null;
 
-    {
-        question: '¿Qué representa la bola de fuego en la leyenda de los Llanos Orientales?',
-        image: '../img/bolaf.png',
-        answers: [
-            { text: 'Un fenómeno astronómico', correct: false },
-            { text: 'El espíritu de un guerrero caído', correct: false },
-            { text: 'Una manifestación de la naturaleza', correct: true },
-            { text: 'El alma de un ser querido perdido', correct: false }
-        ]
-    },
-    {
-        question: '¿Qué se dice que hace la Llorona durante las noches según la leyenda?',
-        image: '../img/llorona.png',
-        answers: [
-            { text: 'Llora buscando a sus hijos', correct: true },
-            { text: 'Canta canciones tristes', correct: false },
-            { text: 'Baila con los espíritus', correct: false },
-            { text: 'Se esconde en las sombras', correct: false }
-        ]
-    },
-];
+let showMovements = document.getElementById('movements');
+let showSuccesses = document.getElementById('successes');
+let showTime = document.getElementById('time');
 
-let currentQuestionIndex = 0;
-let correctAnswers = 0;
-let allQuestionsCorrect = false;
+let winAudio = new Audio('../sounds/win.wav');
+let loseAudio = new Audio('../sounds/lose.wav');
+let clickAudio = new Audio('../sounds/click.wav');
+let rightAudio = new Audio('../sounds/right.wav');
+let wrongAudio = new Audio('../sounds/wrong.wav');
 
-const questionText = document.getElementById('question-text');
-const answerButtons = document.getElementById('answer-buttons');
-const nextButton = document.getElementById('next-button');
+let numbers = [9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16];
+numbers = numbers.sort(()=>{return Math.random() -0.5});
+console.log(numbers);
 
-function startGame() {
-    currentQuestionIndex = 0;
-    correctAnswers = 0;
-    allQuestionsCorrect = false;
-    showQuestion(questions[currentQuestionIndex]);
-}
-function goBack() {
-    // Cambia la URL según tu estructura de carpetas y archivos
-    window.location.href = '../html/mapa.html';
-}
-function showQuestion(question) {
-    questionText.innerText = question.question;
-    const imageElement = document.getElementById('question-image');
-    imageElement.src = question.image;
-    imageElement.alt = `Imagen de la pregunta: ${question.question}`;
+function countTime(){
+    regressiveTimeId = setInterval(()=>{
+        time--;
+        showTime.innerHTML = `Tiempo: ${time} segundos`;
 
-    answerButtons.innerHTML = '';
-    question.answers.forEach(answer => {
-        const button = document.createElement('button');
-        button.innerText = answer.text;
-        button.classList.add('btn');
-        button.addEventListener('click', () => selectAnswer(answer, button));
-        answerButtons.appendChild(button);
-    });
-}
-
-function selectAnswer(answer, button) {
-    const correct = answer.correct;
-    if (correct) {
-        // Incrementa el contador de respuestas correctas
-        correctAnswers++;
-    }
-
-    const allButtons = document.querySelectorAll('.btn');
-    allButtons.forEach(btn => btn.classList.remove('selected'));
-    button.classList.add('selected');
-    nextButton.style.display = 'block';
-}
-
-function nextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        showQuestion(questions[currentQuestionIndex]);
-        nextButton.style.display = 'block';
-    } else {
-        checkAllQuestionsCorrect()
-    }
-}
-function checkAllQuestionsCorrect() {
-    if (correctAnswers === questions.length) {
-        allQuestionsCorrect = true;
-    }
-    showResultMessage();
-}
-function showResultMessage() {
-    nextButton.style.display = 'none';
-    let resultMessage;
-    if (allQuestionsCorrect) {
-        resultMessage = `¡Aprobado! Puntaje final: ${correctAnswers}/${questions.length}`;
-    } else {
-        resultMessage = `Reprobado. Puntaje final: ${correctAnswers}/${questions.length}`;
-    }
-    Swal.fire({
-        title: 'Resultado',
-        text: resultMessage,
-        icon: (correctAnswers === questions.length) ? 'success' : 'error',
-        confirmButtonText: 'Cerrar',
-        showCancelButton: true,
-        cancelButtonText: 'Reintentar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // El botón "Cerrar" fue clicado
-            window.location.href = '../html/mapa.html';
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-            // El botón "Reintentar" fue clicado
-            startGame();
+        if (time == 0){
+            clearInterval(regressiveTimeId);
+            blockCards();
+            loseAudio.play();
+            showTime.innerHTML = `¡Perdiste! Se ha terminado el tiempo`;
         }
-    });
+    }, 1000)
 }
 
-// Inicia el juego al cargar la página
-startGame();
+function blockCards(){
+    for (let i=0; i<=15; i++){
+        let blockCard = document.getElementById(i);
+        blockCard.innerHTML = `<img src="../img/${numbers[i]}.jpg">`;
+        blockCard.disabled = true;
+    }
+}
+function uncover(id){
+    if (timer == false){
+        countTime();
+        timer = true;
+    }
+
+    cardsOpen++;
+
+    if (cardsOpen == 1){
+        card1 = document.getElementById(id);
+        firstResult = numbers[id];
+        card1.innerHTML = `<img src="../img/${firstResult}.jpg">`;
+        clickAudio.play();
+
+        card1.disabled = true;
+    }else if (cardsOpen == 2){
+        card2 = document.getElementById(id);
+        secondResult = numbers[id];
+        card2.innerHTML = `<img src="../img/${secondResult}.jpg">`;
+
+        card2.disabled = true;
+        movements++;
+
+        showMovements.innerHTML = `Movimientos: ${movements}`;
+
+        if (firstResult == secondResult){
+            cardsOpen = 0;
+            successes++;
+            showSuccesses.innerHTML = `Aciertos: ${successes}`;
+            rightAudio.play();
+
+            if (successes == 8){
+                winAudio.play();
+                clearInterval(regressiveTimeId);
+                showSuccesses.innerHTML  = `Aciertos: ${successes} :o!!`;
+                showTime.innerHTML = `Fantástico!! solo demoraste ${startTime - time} segundos`;
+                showMovements.innerHTML = `Movimientos: ${movements} :)`;
+            }
+        }else{
+            wrongAudio.play();
+            setTimeout(()=>{
+                card1.innerHTML = ' ';
+                card2.innerHTML = ' ';
+                card1.disabled = false;
+                card2.disabled = false;
+                cardsOpen = 0;
+
+            },800)
+        }
+    }
+}

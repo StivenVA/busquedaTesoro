@@ -1,0 +1,74 @@
+body{
+    background: rgb(55,117,15);
+    background: linear-gradient(90deg, rgba(55,117,15,1) 0%, rgba(131,224,112,1) 50%, rgba(20,157,7,1) 100%);
+    color: black;
+    font-family: 'Cormorant Garamond', serif;
+}
+main{
+    width: 900px;
+    height: 640px;
+    margin: 100px auto 50px;
+    display: flex;
+    align-items: center;
+}
+.section1{
+    width: 550px;
+    height: 630px;
+    background-color: rgba(255,255,255,0.2);
+    padding: 0 10px 10px 10px;
+    border-radius: 8px;
+}
+h1{
+    font-size: 2.5em;
+    text-align: center;
+}
+button{
+    height: 110px;
+    width: 120px;
+    margin: 5px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+button:hover{
+    cursor: pointer;
+}
+
+.section2{
+    background-color: rgba(255,255,255,0.2);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: 350px;
+    height: 400px;
+    padding: 0 20px;
+}
+h2{
+    font-size: 2em;
+    text-align: center;
+}
+.statistics{
+    border: 3px dashed #d97b10;
+    height: 105px;
+    border-radius: 8px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+}
+footer{
+    display: flex;
+}
+#reset {
+    margin: auto;
+    border: 1px solid #d97b10;
+    width: 10%;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3em;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+}
+#reset:hover{
+    background: rgb(224,223,89);
+    background: linear-gradient(90deg, rgba(224,223,89,1) 0%, rgba(224,132,112,1) 50%, rgba(230,159,59,1) 100%);
+}
+img{
+    width: 80%;
+}
