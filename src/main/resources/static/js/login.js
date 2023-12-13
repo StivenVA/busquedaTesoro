@@ -32,6 +32,7 @@ document.getElementById("send").addEventListener("click",async (e)=>{
 
     window.localStorage.setItem("loc_id",locationId);
     window.localStorage.setItem("User_id",response.id);
+    window.localStorage.setItem("enter",false);
 
     window.location = "../html/mapa.html";
 

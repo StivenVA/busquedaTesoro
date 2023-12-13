@@ -18,14 +18,15 @@ public class UserController {
     @GetMapping("update/")
     public ResponseEntity<?> updateLocation(@RequestParam String code, @RequestParam String userId){
 
+        ClueDTO gottenClue;
         try {
-          userService.updateLocation(code,userId);
+          gottenClue = userService.updateLocation(code,userId);
         }
         catch (NullPointerException | IllegalArgumentException e){
                 return ResponseEntity.badRequest().body(e.getMessage());
         }
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(gottenClue);
     }
 
     @GetMapping("/user_location/{userId}")

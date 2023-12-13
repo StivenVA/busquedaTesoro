@@ -115,10 +115,13 @@ const createMyUbicationButton = () => {
     locationButton.insertAdjacentHTML("afterbegin", "<i class=\"fa-solid fa-street-view\"></i>");
     document.getElementById("menu").appendChild(locationButton);
 
-    if (parseInt(window.localStorage.getItem("loc_id"))===0){
+    if (parseInt(window.localStorage.getItem("loc_id"))===0 && !window.localStorage.getItem("enter")){
         let confirmation = confirm("Bienvenido a tu aventura, pasate por nuestras estaciones para que descubras tu primera pista");
 
-        if (confirmation) window.location = "preguntas_1.html";
+        if (confirmation){
+            window.location = "preguntas_1.html";
+            window.localStorage.setItem("enter",true);
+        }
     }
 };
 
@@ -154,21 +157,27 @@ const checkPIN = async () => {
 
     let pinInput = document.getElementById("pin-input").value.toUpperCase();
 
-    let request = await fetch(`..update/users?code=${pinInput}&userId=${window.localStorage.getItem("User_id")}`);
+    let request = await fetch(`../users/update/?code=${pinInput}&userId=${window.localStorage.getItem("User_id")}`);
     if (request.status===400){
         alert(await request.text());
         return ;
     }
     let response = await request.json();
     window.localStorage.setItem("loc_id",response.id);
-
+    console.log(response.id);
     if (response.id!==10) window.location = `preguntas_${response.id+1}.html`;
-    else alert("Juego completado");
+    else Swal.fire({
+        title: 'Juego completado',
+        text: "¡Felicidades por terminar el juego!, muchisimas gracias por jugar.",
+        icon: "../img/completed.png",
+        confirmButtonText: "Aceptar",
 
+    })
 };
 
 document.getElementById("verify-pin-button").addEventListener("click",checkPIN);
 document.getElementById("cerrar-sesion").addEventListener("click", ()=>{
     window.localStorage.removeItem("loc_id");
     window.localStorage.removeItem("User_id");
+    window.localStorage.removeItem("enter");
 })

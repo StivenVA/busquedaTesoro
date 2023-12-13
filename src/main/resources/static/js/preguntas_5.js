@@ -1,3 +1,5 @@
+import showClue from "../js/showClue.js";
+
 let cardsOpen = 0;
 let card1 = null;
 let card2 = null;
@@ -9,7 +11,7 @@ let timer = false;
 let time = 45;
 let startTime = time;
 let regressiveTimeId = null;
-
+const code = "544-GWU-689";
 let showMovements = document.getElementById('movements');
 let showSuccesses = document.getElementById('successes');
 let showTime = document.getElementById('time');
@@ -82,6 +84,7 @@ function uncover(id){
                 showSuccesses.innerHTML  = `Aciertos: ${successes} :o!!`;
                 showTime.innerHTML = `Fantástico!! solo demoraste ${startTime - time} segundos`;
                 showMovements.innerHTML = `Movimientos: ${movements} :)`;
+                showClue.showClue(code);
             }
         }else{
             wrongAudio.play();
@@ -96,3 +99,5 @@ function uncover(id){
         }
     }
 }
+
+window.uncover = uncover;
