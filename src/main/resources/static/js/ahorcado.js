@@ -57,7 +57,9 @@ const correctLetter = letter => {
             hits++;
         }
     }
-    if(hits === selectedWord.length) endGame();
+    if(hits === selectedWord.length) {
+        //importar la funcion para la pista
+    }
 }
 
 const letterInput = letter => {

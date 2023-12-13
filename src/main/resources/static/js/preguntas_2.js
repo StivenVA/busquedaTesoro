@@ -1,3 +1,7 @@
+const code = "782-LEA-833";
+import showClue from "../js/showClue.js";
+
+
 const questions = [
     {
         //1
@@ -22,7 +26,7 @@ const questions = [
     },
     {
         question: '¿Cuál es el propósito del Chullachaqui al engañar a los viajeros?',
-        image: '../img/mitoChullachaqui.png',
+        image: '../img/chullachaqui.png',
         answers: [
             { text: 'Proteger la selva', correct: false },
             { text: 'Castigar a los curiosos', correct: true },
@@ -106,13 +110,15 @@ function showResultMessage() {
         title: 'Resultado',
         text: resultMessage,
         icon: (correctAnswers === questions.length) ? 'success' : 'error',
-        confirmButtonText: 'Cerrar',
+        confirmButtonText: allQuestionsCorrect?"Seguir":'Cerrar',
         showCancelButton: true,
         cancelButtonText: 'Reintentar'
     }).then((result) => {
         if (result.isConfirmed) {
-            // El botón "Cerrar" fue clicado
-            window.location.href = '../html/mapa.html';
+            if (allQuestionsCorrect){
+                showClue.showClue(code);
+            }
+            else window.location.href = '../html/mapa.html';
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             // El botón "Reintentar" fue clicado
             startGame();
@@ -121,3 +127,4 @@ function showResultMessage() {
 }
 // Inicia el juego al cargar la página
 startGame();
+window.nextQuestion = nextQuestion;

@@ -13,7 +13,7 @@ let properties = [
     {
         id: 3,
         estacion: 3,
-        enlace: "preguntas_3.html",
+        enlace: "ahorcado.html",
     },
     {
         id: 4,
@@ -24,6 +24,31 @@ let properties = [
         id: 5,
         estacion: 5,
         enlace: "preguntas_5.html",
+    },
+    {
+        id: 6,
+        estacion: 6,
+        enlace: "preguntas_6.html",
+    },
+    {
+        id: 7,
+        estacion: 7,
+        enlace: "preguntas_7.html",
+    },
+    {
+        id: 8,
+        estacion: 8,
+        enlace: "preguntas_8.html",
+    },
+    {
+        id: 9,
+        estacion: 9,
+        enlace: "preguntas_9.html",
+    },
+    {
+        id: 10,
+        estacion: 10,
+        enlace: "preguntas_10.html",
     },
 ];
 

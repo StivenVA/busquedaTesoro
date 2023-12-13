@@ -15,19 +15,17 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping()
-    public ResponseEntity<?> getNextCLue(@RequestParam String code, @RequestParam String userId){
-
-        ClueDTO gottenClue;
+    @GetMapping("update/")
+    public ResponseEntity<?> updateLocation(@RequestParam String code, @RequestParam String userId){
 
         try {
-          gottenClue = userService.getClue(code,userId);
+          userService.updateLocation(code,userId);
         }
         catch (NullPointerException | IllegalArgumentException e){
                 return ResponseEntity.badRequest().body(e.getMessage());
         }
 
-        return ResponseEntity.ok(gottenClue);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/user_location/{userId}")
@@ -42,6 +40,19 @@ public class UserController {
         }
 
         return ResponseEntity.ok(userLocation);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getClue(@RequestParam String clue,@RequestParam String user){
+        ClueDTO gottenClue;
+
+        try{
+            gottenClue = userService.getClue(clue,user);
+        }
+        catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok(gottenClue);
     }
 
 }

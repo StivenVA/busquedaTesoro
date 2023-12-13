@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/preguntas_1.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10"></link>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <title>Juego de Preguntas</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+    <link href="http://fonts.cdnfonts.com/css/sf-pixelate" rel="stylesheet">
+    <link rel="stylesheet" href="../css/ahorcado.css" >
+    <script type="text/javascript" src="../js/palabras.js" defer></script>
+    <script type="text/javascript" src="../js/ahorcado.js" defer></script>
 </head>
 <body>
-<div id="quiz-container">
-  <div id="question-container">
-    <p id="question-text"></p>
-    <img id="question-image" src="" alt="Imagen de la pregunta">
-  </div>
-  <div id="answer-buttons" class="btn-container"></div>
-  <div id="next-button-container">
-    <button id="next-button" class="btn" onclick="nextQuestion()">Siguiente</button>
-  </div>
+<h1>Ahorcado leyendas</h1>
+<div>
+    <canvas id="canvas"></canvas>
+    <div id="usedLetters"></div>
 </div>
-<script src="../js/preguntas_3.js"></script>
+<div id="usedLetters"></div>
+<div id="wordContainer"></div>
+<div id="letterButtons"></div>
+<button id="startButton">REINTENTAR</button>
 </body>
 </html>

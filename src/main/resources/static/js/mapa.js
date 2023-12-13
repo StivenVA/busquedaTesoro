@@ -154,7 +154,7 @@ const checkPIN = async () => {
 
     let pinInput = document.getElementById("pin-input").value.toUpperCase();
 
-    let request = await fetch(`../users?code=${pinInput}&userId=${window.localStorage.getItem("User_id")}`);
+    let request = await fetch(`..update/users?code=${pinInput}&userId=${window.localStorage.getItem("User_id")}`);
     if (request.status===400){
         alert(await request.text());
         return ;
