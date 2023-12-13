@@ -113,7 +113,7 @@ const createMyUbicationButton = () => {
         }
     });
     locationButton.insertAdjacentHTML("afterbegin", "<i class=\"fa-solid fa-street-view\"></i>");
-    document.getElementById("menu").appendChild(locationButton);
+    document.getElementById("nav").appendChild(locationButton);
 
     if (parseInt(window.localStorage.getItem("loc_id"))===0 && !window.localStorage.getItem("enter")){
         let confirmation = confirm("Bienvenido a tu aventura, pasate por nuestras estaciones para que descubras tu primera pista");
@@ -180,4 +180,17 @@ document.getElementById("cerrar-sesion").addEventListener("click", ()=>{
     window.localStorage.removeItem("loc_id");
     window.localStorage.removeItem("User_id");
     window.localStorage.removeItem("enter");
+})
+
+//Menpu navbar
+const nav = document.querySelector("#nav");
+const abrir = document.querySelector("#abrir");
+const cerrar = document.querySelector("#cerrar");
+
+abrir.addEventListener("click", () => {
+    nav.classList.add("visible");
+})
+
+cerrar.addEventListener("click", () => {
+    nav.classList.remove("visible");
 })

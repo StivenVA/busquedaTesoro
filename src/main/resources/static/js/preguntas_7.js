@@ -16,7 +16,7 @@ const questions = [
     {
         //2
         question: '¿Qué se dice que anuncia la presencia del Silbón según la leyenda?',
-        image: '../img/silbon.png',
+        image: '../img/silbon2.jpg',
         answers: [
             { text: 'Un lamento lastimero', correct: false },
             { text: 'Un silbido agudo', correct: true },
@@ -26,7 +26,7 @@ const questions = [
     },
     {
         question: '¿Cuál es la supuesta razón por la cual la Llorona llora en la leyenda?',
-        image: '../img/llorona.png',
+        image: '../img/llorona2.jpeg',
         answers: [
             { text: 'Por la pérdida de su fortuna', correct: false },
             { text: 'Por la muerte de sus hijos', correct: true },

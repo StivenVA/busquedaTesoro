@@ -5,15 +5,15 @@ body{
     font-family: 'Cormorant Garamond', serif;
 }
 main{
-    width: 900px;
-    height: 640px;
-    margin: 100px auto 50px;
+    width: 800px;
+    height: 620px;
+    margin: 20px auto 20px;
     display: flex;
     align-items: center;
 }
 .section1{
     width: 550px;
-    height: 630px;
+    height: 600px;
     background-color: rgba(255,255,255,0.2);
     padding: 0 10px 10px 10px;
     border-radius: 8px;
@@ -23,7 +23,7 @@ h1{
     text-align: center;
 }
 button{
-    height: 110px;
+    height: 100px;
     width: 120px;
     margin: 5px;
     font-weight: bold;
@@ -42,7 +42,7 @@ button:hover{
     padding: 0 20px;
 }
 h2{
-    font-size: 2em;
+    font-size: 1.5em;
     text-align: center;
 }
 .statistics{
@@ -58,11 +58,11 @@ footer{
 #reset {
     margin: auto;
     border: 1px solid #d97b10;
-    width: 10%;
+    width: 20%;
     font-family: 'Cormorant Garamond', serif;
     font-size: 3em;
     font-weight: bold;
-    border-radius: 50px;
+    border-radius: 40px;
     cursor: pointer;
 }
 #reset:hover{

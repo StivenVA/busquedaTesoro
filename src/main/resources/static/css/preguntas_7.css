@@ -1,4 +1,4 @@
-body {
+    body {
     font-family: 'Arial', sans-serif;
     display: flex;
     align-items: center;
@@ -9,13 +9,12 @@ body {
 }
 #question-text{
     font-family: 'Goudy Bookletter 1911', serif;
-    font-size: 2em;
-    font-weight: bold;
+    font-size: 1.5em;
 }
 #quiz-container {
     max-width: 800px;
     width: 100%;
-    height: 85%;
+    height: 90%;
     text-align: center;
     background-color: #ecf39e;
     padding: 10px;
@@ -36,12 +35,12 @@ body {
     border-radius: 60px;
     cursor: pointer;
     transition: background-color 0.3s;
-
-    margin: 10px auto;
+    height: 35px;
+    margin: 8px auto;
     box-shadow: 5px 5px 0 #3d3c3c;
     padding: 10px 100px;
     font-family: 'Goudy Bookletter 1911', serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 .btn:hover {
@@ -60,7 +59,6 @@ body {
 }
 
 #next-button {
-    /*padding: 10px;*/
     margin-left: 10px;
     margin-right: 10px;
     background-color: #90a955;
@@ -69,7 +67,7 @@ body {
     border-radius: 50px;
     cursor: pointer;
 
-    padding: 8px 20px;
+    padding: 6px 20px;
     transition: .5s;
 }
 
@@ -83,7 +81,7 @@ body {
     color: #fff;
 }
 #question-image {
-    max-width: 65%; /* La imagen no superará el ancho del contenedor */
+    max-width: 45%; /* La imagen no superará el ancho del contenedor */
     height: auto;    /* La altura se ajustará automáticamente para mantener la proporción original */
     border-radius: 15px;
     border: 3px dashed #90a955;
@@ -115,13 +113,14 @@ body {
 }
 @media (max-width: 800px) {
     #question-text{
-        font-size: 1.5em;
+        font-size: 1.2em;
+        font-weight: bold;
     }
     #quiz-container {
         max-width: 800px;
         width: 90%;
-        height: 100%;
-        padding: 10px;
+        height: 90%;
+        padding: 8px;
         border-radius: 8px;
     }
 
@@ -133,14 +132,14 @@ body {
     }
 
     #question-image {
-        max-width: 62%; /* La imagen no superará el ancho del contenedor */
+        max-width: 52%; /* La imagen no superará el ancho del contenedor */
         height: auto;    /* La altura se ajustará automáticamente para mantener la proporción original */
     }
 }
 
 @media (max-width: 500px){
     #question-text{
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
     #quiz-container {
         max-width: 800px;
@@ -151,14 +150,14 @@ body {
     }
 
     .btn {
-        height: 35px;
+        height: 40px;
         font-size: 1em;
         margin: 8px auto;
-        padding: 10px 100px;
+        padding: 5px 50px;
     }
 
     #question-image {
-        max-width: 75%; /* La imagen no superará el ancho del contenedor */
+        max-width: 65%; /* La imagen no superará el ancho del contenedor */
         height: auto;    /* La altura se ajustará automáticamente para mantener la proporción original */
     }
 

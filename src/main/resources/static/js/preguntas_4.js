@@ -5,7 +5,7 @@ const questions = [
 
     {
         question: '¿Cuál es el nombre de la mujer que protagoniza la leyenda de la Llorona en los Llanos Orientales?',
-        image: '../img/llorona.png',
+        image: '../img/llorona2.jpeg',
         answers: [
             { text: 'Esperanza', correct: false },
             { text: 'María', correct: true },
@@ -26,7 +26,7 @@ const questions = [
     {
         //3
         question: '¿Cuál es el castigo que lleva el Silbón según la leyenda?',
-        image: '../img/silbon.png',
+        image: '../img/silbon2.jpg',
         answers: [
             { text: 'Cargar con cadenas eternamente', correct: false },
             { text: 'Vagar sin rumbo fijo', correct: false },

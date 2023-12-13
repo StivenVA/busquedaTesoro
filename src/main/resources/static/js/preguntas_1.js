@@ -16,7 +16,7 @@ const questions = [
     },
     {
         question: '¿Que mito representa la imagen mostrada?',
-        image: '../img/llorona.png',
+        image: '../img/llorona2.jpeg',
         answers: [
             {text: 'Llorona', correct: true},
             {text: 'Mano Peluda', correct: false},
@@ -26,7 +26,7 @@ const questions = [
     },
     {
         question: '¿Que mito representa la imagen mostrada?',
-        image: '../img/silbon.png',
+        image: '../img/silbon2.jpg',
         answers: [
             {text: 'El Salvaje', correct: false},
             {text: 'Juan Machete', correct: false},
