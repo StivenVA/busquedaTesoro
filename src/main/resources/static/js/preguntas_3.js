@@ -1,124 +1,147 @@
-const questions = [
-//agregar pregunta llorona
-    {
-        question: '¿Cómo se describe físicamente al Mohán en la mitología de los Llanos Orientales?',
-        image: '../img/mohan.png',
-        answers: [
-            { text: 'Un hombre atractivo con larga cabellera', correct: true },
-            { text: 'Un hombre alto y delgado', correct: false },
-            { text: 'Un ser peludo con cuernos', correct: false },
-            { text: 'Un anciano de aspecto sabio', correct: false }
-        ]
-    },
-    {
-        //2
-        question: '¿Qué se dice que anuncia la presencia del Silbón según la leyenda?',
-        image: '../img/silbon.png',
-        answers: [
-            { text: 'Un lamento lastimero', correct: false },
-            { text: 'Un silbido agudo', correct: true },
-            { text: 'El aullido de un lobo', correct: false },
-            { text: 'El sonido de campanas lejanas', correct: false }
-        ]
-    },
-    {
-        question: '¿Cuál es la supuesta razón por la cual la Llorona llora en la leyenda?',
-        image: '../img/llorona.png',
-        answers: [
-            { text: 'Por la pérdida de su fortuna', correct: false },
-            { text: 'Por la muerte de sus hijos', correct: true },
-            { text: 'Por haber sido abandonada', correct: false },
-            { text: 'Por la pérdida de su esposo', correct: false }
-        ]
-    },
+import showClue from "../js/showClue.js";
+const code = "429-CAW-474";
+const wordContainer = document.getElementById('wordContainer');
+const startButton = document.getElementById('startButton');
+const usedLettersElement = document.getElementById('usedLetters');
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Ocultar el botón START al cargar la página
+    startButton.style.display = 'none';
+    startGame()
+});
+
+
+let canvas = document.getElementById('canvas');
+let ctx = canvas.getContext('2d');
+ctx.canvas.width  = 0;
+ctx.canvas.height = 0;
+
+const bodyParts = [
+    [4,2,1,1],
+    [4,3,1,2],
+    [3,5,1,1],
+    [5,5,1,1],
+    [3,3,1,1],
+    [5,3,1,1]
 ];
 
-let currentQuestionIndex = 0;
-let correctAnswers = 0;
-let allQuestionsCorrect = false;
+let selectedWord;
+let usedLetters;
+let mistakes;
+let hits;
 
-const questionText = document.getElementById('question-text');
-const answerButtons = document.getElementById('answer-buttons');
-const nextButton = document.getElementById('next-button');
-
-function startGame() {
-    currentQuestionIndex = 0;
-    correctAnswers = 0;
-    allQuestionsCorrect = false;
-    showQuestion(questions[currentQuestionIndex]);
-}
-function goBack() {
-    // Cambia la URL según tu estructura de carpetas y archivos
-    window.location.href = '../html/mapa.html';
-}
-function showQuestion(question) {
-    questionText.innerText = question.question;
-    const imageElement = document.getElementById('question-image');
-    imageElement.src = question.image;
-    imageElement.alt = `Imagen de la pregunta: ${question.question}`;
-
-    answerButtons.innerHTML = '';
-    question.answers.forEach(answer => {
-        const button = document.createElement('button');
-        button.innerText = answer.text;
-        button.classList.add('btn');
-        button.addEventListener('click', () => selectAnswer(answer, button));
-        answerButtons.appendChild(button);
-    });
+const addLetter = letter => {
+    const letterElement = document.createElement('span');
+    letterElement.innerHTML = letter.toUpperCase();
+    usedLettersElement.appendChild(letterElement);
 }
 
-function selectAnswer(answer, button) {
-    const correct = answer.correct;
-    if (correct) {
-        // Incrementa el contador de respuestas correctas
-        correctAnswers++;
-    }
+const addBodyPart = bodyPart => {
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(...bodyPart);
+};
 
-    const allButtons = document.querySelectorAll('.btn');
-    allButtons.forEach(btn => btn.classList.remove('selected'));
-    button.classList.add('selected');
-    nextButton.style.display = 'block';
+const wrongLetter = () => {
+    addBodyPart(bodyParts[mistakes]);
+    mistakes++;
+    if(mistakes === bodyParts.length) endGame();
 }
 
-function nextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        showQuestion(questions[currentQuestionIndex]);
-        nextButton.style.display = 'block';
-    } else {
-        checkAllQuestionsCorrect()
-    }
+const endGame = () => {
+    document.removeEventListener('keydown', letterEvent);
+    startButton.style.display = 'block';
 }
-function checkAllQuestionsCorrect() {
-    if (correctAnswers === questions.length) {
-        allQuestionsCorrect = true;
-    }
-    showResultMessage();
-}
-function showResultMessage() {
-    nextButton.style.display = 'none';
-    let resultMessage;
-    if (allQuestionsCorrect) {
-        resultMessage = `¡Aprobado! Puntaje final: ${correctAnswers}/${questions.length}`;
-    } else {
-        resultMessage = `Reprobado. Puntaje final: ${correctAnswers}/${questions.length}`;
-    }
-    Swal.fire({
-        title: 'Resultado',
-        text: resultMessage,
-        icon: (correctAnswers === questions.length) ? 'success' : 'error',
-        confirmButtonText: 'Cerrar',
-        showCancelButton: true,
-        cancelButtonText: 'Reintentar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // El botón "Cerrar" fue clicado
-            window.location.href = '../html/mapa.html';
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-            // El botón "Reintentar" fue clicado
-            startGame();
+
+const correctLetter = letter => {
+    const { children } =  wordContainer;
+    for(let i = 0; i < children.length; i++) {
+        if(children[i].innerHTML === letter) {
+            children[i].classList.toggle('hidden');
+            hits++;
         }
-    });
+    }
+    if(hits === selectedWord.length) showClue.showClue(code);
+
 }
-// Inicia el juego al cargar la página
-startGame();
+
+const letterInput = letter => {
+    if(selectedWord.includes(letter)) {
+        correctLetter(letter);
+    } else {
+        wrongLetter();
+    }
+    addLetter(letter);
+    usedLetters.push(letter);
+};
+
+const letterEvent = event => {
+    let newLetter = event.key.toUpperCase();
+    if(newLetter.match(/^[a-zñ]$/i) && !usedLetters.includes(newLetter)) {
+        letterInput(newLetter);
+    }
+};
+
+const drawWord = () => {
+    selectedWord.forEach(letter => {
+        const letterElement = document.createElement('span');
+        letterElement.innerHTML = letter.toUpperCase();
+        letterElement.classList.add('letter');
+        letterElement.classList.add('hidden');
+        wordContainer.appendChild(letterElement);
+    });
+};
+
+const selectRandomWord = () => {
+    let word = words[Math.floor((Math.random() * words.length))].toUpperCase();
+    selectedWord = word.split('');
+};
+
+const drawHangMan = () => {
+    ctx.canvas.width  = 120;
+    ctx.canvas.height = 160;
+    ctx.scale(20, 20);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#d95d39';
+    ctx.fillRect(0, 7, 4, 1);
+    ctx.fillRect(1, 0, 1, 8);
+    ctx.fillRect(2, 0, 3, 1);
+    ctx.fillRect(4, 1, 1, 1);
+};
+const letterButtonsContainer = document.getElementById("letterButtons");
+
+const createLetterButton = (letter) => {
+    const button = document.createElement('button');
+    button.textContent = letter;
+    button.classList.add('letterButton');
+    button.addEventListener('click', () => letterInput(letter));
+    return button;
+};
+
+const generateLetterButtons = () => {
+    // Eliminar botones existentes
+    letterButtonsContainer.innerHTML = '';
+
+    // Crear nuevos botones
+    for (let letterCode = 65; letterCode <= 90; letterCode++) {
+        const letter = String.fromCharCode(letterCode);
+        const button = createLetterButton(letter);
+        letterButtonsContainer.appendChild(button);
+    }
+};
+
+const startGame = () => {
+    usedLetters = [];
+    mistakes = 0;
+    hits = 0;
+    wordContainer.innerHTML = '';
+    usedLettersElement.innerHTML = '';
+    startButton.style.display = 'none';
+    drawHangMan();
+    selectRandomWord();
+    drawWord();
+    generateLetterButtons();
+    document.addEventListener('keydown', letterEvent);
+    startButton.style.display = 'none';
+};
+
+startButton.addEventListener('click', startGame);

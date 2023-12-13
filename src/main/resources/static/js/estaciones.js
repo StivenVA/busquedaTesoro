@@ -13,7 +13,7 @@ let properties = [
     {
         id: 3,
         estacion: 3,
-        enlace: "ahorcado.html",
+        enlace: "preguntas_3.html",
     },
     {
         id: 4,
@@ -56,7 +56,7 @@ window.addEventListener("DOMContentLoaded",()=>{
 
     let locationsUnlocked = parseInt(window.localStorage.getItem("loc_id"));
 
-    if (locationsUnlocked!==0 && locationsUnlocked!==10){
+    if (locationsUnlocked!==0){
         for (let i = 1; i<=locationsUnlocked+1; i++) {
             document.getElementById(`button${i}`).disabled = false;
         }
