@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego de memoria</title>
+
+    <link rel="stylesheet" href="../css/estilos_memoria.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&family=Goudy+Bookletter+1911&family=Source+Code+Pro:ital,wght@1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <section class="section1">
+            <h1>Juego de memoria</h1>
+            <table>
+                <tr>
+                    <td><button id="0" onclick="uncover(0)"></button></td>
+                    <td><button id="1" onclick="uncover(1)"></button></td>
+                    <td><button id="2" onclick="uncover(2)"></button></td>
+                    <td><button id="3" onclick="uncover(3)"></button></td>
+                </tr>
+                <tr>
+                    <td><button id="4" onclick="uncover(4)"></button></td>
+                    <td><button id="5" onclick="uncover(5)"></button></td>
+                    <td><button id="6" onclick="uncover(6)"></button></td>
+                    <td><button id="7" onclick="uncover(7)"></button></td>
+                </tr>
+                <tr>
+                    <td><button id="8" onclick="uncover(8)"></button></td>
+                    <td><button id="9" onclick="uncover(9)"></button></td>
+                    <td><button id="10" onclick="uncover(10)"></button></td>
+                    <td><button id="11" onclick="uncover(11)"></button></td>
+                </tr>
+                <tr>
+                    <td><button id="12" onclick="uncover(12)"></button></td>
+                    <td><button id="13" onclick="uncover(13)"></button></td>
+                    <td><button id="14" onclick="uncover(14)"></button></td>
+                    <td><button id="15" onclick="uncover(15)"></button></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section2">
+            <h2 class="statistics" id="successes">Aciertos: 0</h2>
+            <h2 class="statistics" id="time">Tiempo: 30 segundos</h2>
+            <h2 class="statistics" id="movements">Movimientos: 0</h2>
+        </section>
+    </main>
+
+    <footer>
+        <input type="button" id="reset" value="Reiniciar" onclick="document.location.reload()">
+    </footer>
+
+    <script src="../js/preguntas_8.js" type="module"></script>
+</body>
+</html>
