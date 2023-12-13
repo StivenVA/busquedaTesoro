@@ -20,25 +20,35 @@ public class UserService implements UserInterface {
         private final LocationRepository locationRepository;
         private final ClueRepository clueRepository;
 
-        public ClueDTO getClue(String codeClue, String id){
+        public ClueDTO getClue(String codeClue,String user){
                 Clue foundedClue = clueRepository.findById(codeClue).orElse(null);
-                User foundedUser = userRepository.findById(id).orElse(null);
+                User foundedUser = userRepository.findById(user).orElse(null);
 
-                updateLocation(foundedClue,foundedUser);
+                if (foundedClue==null) throw new NullPointerException("Codigo incorrecto");
+                if (foundedUser==null) throw new NullPointerException("Usuario no encontrado");
+
+                if (foundedUser.getLocationId()!=null && foundedUser.getLocationId().getLocationId()<locationRepository.findByClueId(foundedClue).getLocationId())
+                        throw new IllegalArgumentException("Codigo incorrecto");
+                else if (foundedUser.getLocationId() == null && locationRepository.findByClueId(foundedClue).getLocationId()!=1) {
+                        throw new IllegalArgumentException("Codigo incorrecto");
+                }
 
                 return new ClueDTO(foundedClue,locationRepository.findByClueId(foundedClue).getLocationId());
         }
 
 
         @Override
-        public void updateLocation(Clue foundedClue,User user) {
+        public void updateLocation(String codeClue,String user) {
+                Clue foundedClue = clueRepository.findById(codeClue).orElse(null);
+                User foundedUser = userRepository.findById(user).orElse(null);
+
                 if (foundedClue==null) throw new NullPointerException("Codigo incorrecto");
                 if (user==null) throw new NullPointerException("Usuario no encontrado");
 
                 Location clueLocation = locationRepository.findByClueId(foundedClue);
 
-                if (clueLocation.getLocationId() == nextLocationIdFromUser(user)) {
-                        userRepository.updateLocation(clueLocation, user.getId());
+                if (clueLocation.getLocationId() == nextLocationIdFromUser(foundedUser)) {
+                        userRepository.updateLocation(clueLocation, foundedUser.getId());
                 }
                 else throw new IllegalArgumentException("El codigo no corresponde al de la siguiente locacion");
 

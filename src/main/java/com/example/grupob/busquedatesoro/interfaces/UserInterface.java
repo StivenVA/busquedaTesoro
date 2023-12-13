@@ -5,7 +5,7 @@ import com.example.grupob.busquedatesoro.models.Location;
 import com.example.grupob.busquedatesoro.models.User;
 
 public interface UserInterface {
-    void updateLocation(Clue codeClue, User user);
+    void updateLocation(String codeClue, String user);
 
     Location getLocation(String userId);
 }

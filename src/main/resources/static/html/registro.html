@@ -17,27 +17,27 @@
 </section>
 
 <section class="rigth-form">
-    <form action="" method="post">
+    <form action="#" >
         <h2>Registro nuevo usuario</h2>
 
         <label for="name">Nombre</label>
-        <input type="text" name="name" id="name" placeholder="Nombre">
+        <input type="text" name="name" id="name" placeholder="Nombre" required>
 
         <label for="id">Cédula/Documento de Identidad</label>
-        <input type="number" min="123456" name="id" id="id" placeholder="Cedula">
+        <input type="number" min="123456" name="id" id="id" placeholder="Cedula" required>
 
         <label for="telephone">Telefono</label>
-        <input type="tel" name="telephone" id="telephone" placeholder="1234567890">
+        <input type="tel" name="telephone" id="telephone" placeholder="1234567890" required>
 
         <label for="email">Correo Electronico</label>
-        <input type="email" name="email" id="email" placeholder="ejemplo@hotmail.com">
+        <input type="email" name="email" id="email" placeholder="ejemplo@hotmail.com" required>
 
         <label for="password">Contraseña</label>
-        <input type="password" name="password" id="password" placeholder="contraseña">
+        <input type="password" name="password" id="password" placeholder="contraseña" required>
 
         <label for="password">Confirmar Contraseña</label>
-        <input type="password" name="password" id="passwordConfirm" placeholder="contraseña">
-        <input type="submit" value="Ingreso" id="send">
+        <input type="password" name="password" id="passwordConfirm" placeholder="contraseña" required>
+        <button type="submit" id="send">Registrarse</button>>
         <a href="../index.html">Usuario Existente</a>
     </form>
 </section>

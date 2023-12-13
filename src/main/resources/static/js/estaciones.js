@@ -25,13 +25,38 @@ let properties = [
         estacion: 5,
         enlace: "preguntas_5.html",
     },
+    {
+        id: 6,
+        estacion: 6,
+        enlace: "preguntas_6.html",
+    },
+    {
+        id: 7,
+        estacion: 7,
+        enlace: "preguntas_7.html",
+    },
+    {
+        id: 8,
+        estacion: 8,
+        enlace: "preguntas_8.html",
+    },
+    {
+        id: 9,
+        estacion: 9,
+        enlace: "preguntas_9.html",
+    },
+    {
+        id: 10,
+        estacion: 10,
+        enlace: "preguntas_10.html",
+    },
 ];
 
 window.addEventListener("DOMContentLoaded",()=>{
 
     let locationsUnlocked = parseInt(window.localStorage.getItem("loc_id"));
 
-    if (locationsUnlocked!==0 && locationsUnlocked!==10){
+    if (locationsUnlocked!==0){
         for (let i = 1; i<=locationsUnlocked+1; i++) {
             document.getElementById(`button${i}`).disabled = false;
         }

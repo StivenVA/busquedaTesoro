@@ -19,11 +19,16 @@ public class SignUpUserController {
     private final SignUpService signUpService;
 
     @PostMapping
-    public ResponseEntity<Boolean> userRegister(@RequestBody User user){
+    public ResponseEntity<?> userRegister(@RequestBody User user){
 
-        if (signUpService.addUser(user)) return ResponseEntity.ok(true);
+        try{
+            if (signUpService.addUser(user)) return ResponseEntity.ok("Usuario creado correctamente");
+        }
+        catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
 
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body("El correo o la identificacion ya se encuentran registrados");
     }
 
 }

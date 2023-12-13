@@ -1,3 +1,8 @@
+const code = "878-TPA-979";
+import showClue from "../js/showClue.js";
+
+let toShowClue = showClue;
+
 const questions = [
     {
         question: '¿Que mito representa la imagen mostrada?',
@@ -44,11 +49,6 @@ function startGame() {
     correctAnswers = 0;
     allQuestionsCorrect = false;
     showQuestion(questions[currentQuestionIndex]);
-}
-
-function goBack() {
-    // Cambia la URL según tu estructura de carpetas y archivos
-    window.location.href = '../html/mapa.html';
 }
 
 function showQuestion(question) {
@@ -109,14 +109,17 @@ function showResultMessage() {
         title: 'Resultado',
         text: resultMessage,
         icon: (correctAnswers === questions.length) ? 'success' : 'error',
-        confirmButtonText: 'Cerrar',
+        confirmButtonText: allQuestionsCorrect?"Seguir":"Cerrar",
         showCancelButton: true,
         cancelButtonText: 'Reintentar'
     }).then((result) => {
         if (result.isConfirmed) {
-            // El botón "Cerrar" fue clicado
-            window.location.href = '../html/mapa.html';
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            if (allQuestionsCorrect){
+                toShowClue.showClue(code)
+            }
+            else window.location.href = '../html/mapa.html';
+        } //showClue(code);
+        else if (result.dismiss === Swal.DismissReason.cancel) {
             // El botón "Reintentar" fue clicado
             startGame();
         }
@@ -125,3 +128,5 @@ function showResultMessage() {
 
 // Inicia el juego al cargar la página
 startGame();
+
+window.nextQuestion = nextQuestion;
